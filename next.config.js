@@ -30,6 +30,76 @@ const nextConfig = {
         "permanent": true
       },
       {
+        "source": "/piano-lessons",
+        "destination": "/lessons",
+        "permanent": true
+      },
+      {
+        "source": "/piano-lesson",
+        "destination": "/lessons",
+        "permanent": true
+      },
+      {
+        "source": "/pianolessons",
+        "destination": "/lessons",
+        "permanent": true
+      },
+      {
+        "source": "/pianolesson",
+        "destination": "/lessons",
+        "permanent": true
+      },
+      {
+        "source": "/songs",
+        "destination": "/repertoire",
+        "permanent": true
+      },
+      {
+        "source": "/music",
+        "destination": "/repertoire",
+        "permanent": true
+      },
+      {
+        "source": "/pieces",
+        "destination": "/repertoire",
+        "permanent": true
+      },
+      {
+        "source": "/recordings",
+        "destination": "/videos",
+        "permanent": true
+      },
+      {
+        "source": "/recording",
+        "destination": "/videos",
+        "permanent": true
+      },
+      {
+        "source": "/video",
+        "destination": "/videos",
+        "permanent": true
+      },
+      {
+        "source": "/events",
+        "destination": "/calendar",
+        "permanent": true
+      },
+      {
+        "source": "/schedule",
+        "destination": "/calendar",
+        "permanent": true
+      },
+      {
+        "source": "/bio",
+        "destination": "/about",
+        "permanent": true
+      },
+      {
+        "source": "/biography",
+        "destination": "/about",
+        "permanent": true
+      },
+      {
         "source": "/privacypolicy",
         "destination": "/privacy",
         "permanent": true

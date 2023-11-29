@@ -8,7 +8,7 @@ const aboutPage: NextPage = () => {
       <SiteHead title="About William Perry" description="William-Perry.com is the official website for William Perry - Pianist, Educator, and Conductor" url="about" />
 
       <main className="bg-wpWhite text-wpBlack w-full flex flex-1 flex-col text-center items-center justify-center">
-        <section id="contact">
+        <section id="about">
           <div className="px-9 max-md:mt-10 md:mt-20 mb-28 max-w-[1000px] text-left">
             <h1 className="mb-4 text-6xl">About</h1>
             <p className="text-xl">William Perry has built his reputation on dynamic performances of wide ranging repertoire, styles and explorations into new musical territories. He brings to every musical endeavor a unique and fresh perspective, which keeps him in demand as a classical pianist, jazz pianist, electronic keyboardist and educator.</p>

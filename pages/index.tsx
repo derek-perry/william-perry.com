@@ -9,7 +9,7 @@ const homePage: NextPage = () => {
     <div className="min-h-screen flex flex-col items-center justify-center">
       <SiteHead title="William Perry" description="William-Perry.com is the official website for William Perry - Pianist, Educator, and Conductor" url="" />
 
-      <main className="bg-wpWhite text-wpBlack w-full flex flex-1 flex-col text-center items-center justify-center px-9">
+      <main className="bg-white text-wpBlack w-full flex flex-1 flex-col text-center items-center justify-center px-9">
         <section id="hero">
           <div className="flex flex-col text-center max-w-[810px] m-auto">
             <h1 className="max-md:mt-10 md:mt-20 mb-4 text-6xl">William Perry</h1>

@@ -9,7 +9,7 @@ const contactPage: NextPage = () => {
     <div className="min-h-screen flex flex-col items-center justify-center">
       <SiteHead title="Contact William Perry" description="William-Perry.com is the official website for William Perry - Pianist, Educator, and Conductor" url="contact" />
 
-      <main className="bg-wpWhite text-wpBlack w-full flex flex-1 flex-col text-center items-center justify-center">
+      <main className="bg-white text-wpBlack w-full flex flex-1 flex-col text-center items-center justify-center">
         <section id="contact">
           <div className="px-9 max-md:mt-10 md:mt-20 mb-28 max-w-[1000px] text-left">
             <h1 className="mb-4 text-6xl">Get in Contact</h1>

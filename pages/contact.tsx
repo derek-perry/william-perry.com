@@ -10,8 +10,8 @@ const contactPage: NextPage = () => {
       <SiteHead title="Contact William Perry" description="William-Perry.com is the official website for William Perry - Pianist, Educator, and Conductor" url="contact" />
 
       <main className="bg-wpWhite text-wpBlack w-full flex flex-1 flex-col text-center items-center justify-center">
-        <section className="py-9 px-9 max-w-[1000px] w-full flex flex-1 flex-col items-center justify-center">
-          <section id="contact" className="pt-10 mb-20 max-w-[1000px] text-left">
+        <section id="contact">
+          <div className="px-9 max-md:mt-10 md:mt-20 mb-28 max-w-[1000px] text-left">
             <h1 className="mb-4 text-6xl">Get in Contact</h1>
             <p className="text-xl">If you’d like to book William Perry to play for your event, inquire about piano lessons, or have any other questions, send an email to <LinkExternal className="max-sm:break-all" href="mailto:contact@william-perry.com" title="Contact William Perry via Email at Contact@William-Perry.com">Contact@William-Perry.com</LinkExternal></p>
             <h2 id="user-data" className="mt-10 mb-4 text-4xl">Follow William on Social Media:</h2>
@@ -20,7 +20,7 @@ const contactPage: NextPage = () => {
               <ButtonExternal title="Instagram" href="https://instagram.com/WPerryMusic">Instagram</ButtonExternal>
               <ButtonExternal title="YouTube" href="https://youtube.com/channel/UCyKOObVbhSWyCQPNAg3NggA">YouTube</ButtonExternal>
             </div>
-          </section>
+          </div>
         </section>
       </main>
 

@@ -8,11 +8,11 @@ const error404Page: NextPage = () => {
       <SiteHead title="Error 404: Content Not Found" description="William-Perry.com is the official website for William Perry - Pianist, Educator, and Conductor" url="404" />
 
       <main className="bg-wpWhite text-wpBlack w-full flex flex-1 flex-col text-center items-center justify-center">
-        <section className="py-9 px-9 max-w-[1000px] w-full flex flex-1 flex-col items-center justify-center">
-          <section id="contact" className="py-10 max-w-[1000px] text-left">
+        <section id="500">
+          <div className="px-9 max-md:mt-10 md:mt-20 mb-28 max-w-[1000px] text-left">
             <h1 className="mb-4 text-6xl text-red-600">Error 404: Content Not Found</h1>
-            <p className="text-xl">The page/content you are looking for has moved, is no longer available, has been archived, or was not valid.</p>
-          </section>
+            <p className="text-xl">The page/content you are looking for has moved, is no longer available, or has been archived.</p>
+          </div>
         </section>
       </main>
 

@@ -11,7 +11,7 @@ const videosPage: NextPage = () => {
         <section id="videos">
           <section className="px-9 max-md:mt-10 md:mt-20 mb-28 max-w-[1000px] text-left">
             <h1 className="text-6xl">Videos</h1>
-            <p className="my-4 text-xl">William plays solo piano versions of his most requested songs.</p>
+            <p className="my-4">William plays solo piano versions of his most requested songs.</p>
             <div className="flex max-md:flex-col md:flex-row md:flex-wrap gap-y-2">
               <div className="flex flex-col mx-auto md:max-w-[708px]">
                 <iframe
@@ -75,8 +75,8 @@ const videosPage: NextPage = () => {
               </div>
             </div>
             <div className="flex flex-col md:max-w-[708px]">
-              <h2 id="popjazz" className="mt-20 text-4xl">Popular and Jazz</h2>
-              <p className="my-4 text-xl">William plays solo piano versions of his most requested songs.</p>
+              <h2 id="popjazz" className="mt-20">Popular and Jazz</h2>
+              <p className="my-4">William plays solo piano versions of his most requested songs.</p>
               <div className="flex flex-col md:max-w-[708px]">
                 <iframe
                   src="https://youtube.com/embed/lGsoecbFfPo"
@@ -89,8 +89,8 @@ const videosPage: NextPage = () => {
               </div>
             </div>
             <div className="flex flex-col md:max-w-[708px]">
-              <h2 id="wedding" className="mt-20 text-4xl">Wedding Songs</h2>
-              <p className="my-4 text-xl">William plays solo piano versions of the most popular wedding songs.</p>
+              <h2 id="wedding" className="mt-20">Wedding Songs</h2>
+              <p className="my-4">William plays solo piano versions of the most popular wedding songs.</p>
               <div className="flex flex-col md:max-w-[708px]">
                 <iframe
                   src="https://youtube.com/embed/URNGY0GMk38"
@@ -103,8 +103,8 @@ const videosPage: NextPage = () => {
               </div>
             </div>
             <div className="flex flex-col md:max-w-[708px]">
-              <h2 id="keyboard" className="mt-20 text-4xl">Keyboard</h2>
-              <p className="my-4 text-xl">William demonstrates keyboard parts for a live band setting of the most popular “Yacht Rock” songs.</p>
+              <h2 id="keyboard" className="mt-20">Keyboard</h2>
+              <p className="my-4">William demonstrates keyboard parts for a live band setting of the most popular “Yacht Rock” songs.</p>
               <div className="flex flex-col md:max-w-[708px]">
                 <iframe
                   src="https://youtube.com/embed/ccRz_CLHpjQ"

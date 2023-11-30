@@ -31,7 +31,7 @@ const calendarPage: NextPage<listingsProps> = ({ listings }) => {
       <main className="bg-white text-wpBlack w-full flex flex-1 flex-col text-center items-center justify-center px-9">
         <section id="calendar">
           <section className="max-md:mt-10 md:mt-20 mb-10 max-w-[1000px] text-left">
-            <h1 className="mb-4 text-6xl">Calendar</h1>
+            <h1 className="mb-4">Calendar</h1>
           </section>
         </section>
 
@@ -45,10 +45,10 @@ const calendarPage: NextPage<listingsProps> = ({ listings }) => {
                   key={name}
                   id={stringWithUrlSupport(name)}
                 >
-                  <h3 className="bg-wpRedLight text-white min-h-[88px] flex items-center justify-center font-bold text-3xl px-5 mb-3 max-sm:hyphens-auto">{name}</h3>
-                  <p className="mt-4 mb-2 text-2xl px-5">{datetime}</p>
-                  <p className="mt-2 mb-4 max-sm:hyphens-auto text-2xl px-5" dangerouslySetInnerHTML={{ __html: stringWithLineBreaks(price) }} />
-                  <p className="mt-2 mb-4 max-sm:hyphens-auto text-left px-5" dangerouslySetInnerHTML={{ __html: stringWithLineBreaks(description) }} />
+                  <h3 className="bg-wpRedLight text-white min-h-[88px] flex items-center justify-center font-bold text-3xl px-5 max-sm:hyphens-auto">{name}</h3>
+                  <p className="bg-wpRedLight text-white max-sm:hyphens-auto text-2xl px-5" dangerouslySetInnerHTML={{ __html: stringWithLineBreaks(datetime) }} />
+                  <p className="bg-wpRedLight text-white py-4 max-sm:hyphens-auto text-2xl px-5" dangerouslySetInnerHTML={{ __html: stringWithLineBreaks(price) }} />
+                  <p className="my-4 max-sm:hyphens-auto text-left px-5" dangerouslySetInnerHTML={{ __html: stringWithLineBreaks(description) }} />
                 </article>
               ))}
           </div>

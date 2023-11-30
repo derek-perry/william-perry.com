@@ -27,7 +27,7 @@ const repertoirePage: NextPage<listingsProps> = ({ listings }) => {
       <main className="bg-white text-wpBlack w-full flex flex-1 flex-col text-center items-center justify-center px-9">
         <section id="repertoire">
           <section className="max-md:mt-10 md:mt-20 mb-10 max-w-[1000px] text-left">
-            <h1 className="mb-4 text-6xl">Repertoire</h1>
+            <h1 className="mb-4 max-sm:text-5xl">Repertoire</h1>
           </section>
         </section>
 

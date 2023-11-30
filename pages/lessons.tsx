@@ -20,18 +20,18 @@ const lessonsPage: NextPage = () => {
       <main className="bg-white text-wpBlack w-full flex flex-1 flex-col text-center items-center justify-center px-9">
         <section id="lessons">
           <div className="max-md:mt-10 md:mt-20 mb-28 max-w-[1000px] text-left">
-            <h1 className="mb-4 text-6xl">Piano Lessons</h1>
+            <h1 className="mb-4">Piano Lessons</h1>
             <div className="flex max-md:flex-col md:flex-row max-md:text-center md:text-left max-md:items-center md:items-left gap-x-10 gap-y-6">
               <div className="max-w-[280px]">
-                <h2 className="mt-8 mb-4 text-4xl">Customized Learning</h2>
+                <h2 className="mt-8 mb-4">Customized Learning</h2>
                 <p className="text-xl">Every piano lesson takes into account your goals as a student. Learn the music you want while getting the skills you need to meet those goals.</p>
               </div>
               <div className="max-w-[280px]">
-                <h2 className="mt-8 mb-4 text-4xl">Convenient Scheduling</h2>
+                <h2 className="mt-8 mb-4">Convenient Scheduling</h2>
                 <p className="text-xl">Take your lessons in your home, at my studio, or online at times that are convenient for you. You always pay the same, no matter what location you pick. We can even work out a hybrid plan!</p>
               </div>
               <div className="max-w-[280px]">
-                <h2 className="mt-8 mb-4 text-4xl">All Ages and Styles</h2>
+                <h2 className="mt-8 mb-4">All Ages and Styles</h2>
                 <p className="text-xl">Whether you are just starting out, have been playing for years or want to develop a specialized skill at the piano, I can help you.</p>
               </div>
             </div>
@@ -39,13 +39,13 @@ const lessonsPage: NextPage = () => {
         </section>
 
         <section id="inquire">
-          <h2 className="mb-6 text-4xl">Inquire about Lessons Now!</h2>
+          <h2 className="mb-6">Inquire about Lessons Now!</h2>
           <p className="text-xl">Send an email to <LinkExternal className="max-sm:break-all" href="mailto:contact@william-perry.com?subject=Piano Lesson Inquiry - William-Perry.com&body=Inquire about weekly piano lessons (online or in-person: your home or at the studio in Cincinnati) (30, 45, or 60 minutes) with William Perry. Please include the student name(s) and necessary contact information along with any notes about availability." title="Contact William Perry via Email at Contact@William-Perry.com">Contact@William-Perry.com</LinkExternal></p>
         </section>
 
         <section id="faq">
           <div className="max-md:mt-28 md:mt-24 mb-12 max-w-[1000px] text-left">
-            <h2 className="mb-4 text-4xl">Frequently Asked Questions</h2>
+            <h2 className="mb-4">Frequently Asked Questions</h2>
             <Accordion>
               <AccordionItem>
                 <AccordionItemHeading>
@@ -55,8 +55,8 @@ const lessonsPage: NextPage = () => {
                 </AccordionItemHeading>
                 <AccordionItemPanel>
                   <h3 className="text-3xl">What is your Teaching Philosophy?</h3>
-                  <p className="my-4 text-xl">My first and most important goal as a piano teacher is to guide my students to their goals. I do not have a one-size-fits-all approach to piano lessons and because I understand that each piano student has distinct goals, schedules, and learning styles and that no two students are exactly alike, my online piano lessons incorporate a wide range of techniques, concepts and styles to accommodate everyone. Whether you are a beginning or advanced student, interested in classical, or pop music, or looking for broad coaching in other musical skills like performing, playing by ear, composing or improvising, you’ll get a program that best suits your needs and your goals.</p>
-                  <p className="my-4 text-xl">My first and most important goal as a piano teacher is to guide my students to their goals. I do not have a one-size-fits-all approach to piano lessons and because I understand that each piano student has distinct goals, schedules, and learning styles and that no two students are exactly alike, my online piano lessons incorporate a wide range of techniques, concepts and styles to accommodate everyone. Whether you are a beginning or advanced student, interested in classical, or pop music, or looking for broad coaching in other musical skills like performing, playing by ear, composing or improvising, you’ll get a program that best suits your needs and your goals.</p>
+                  <p className="my-4">My first and most important goal as a piano teacher is to guide my students to their goals. I do not have a one-size-fits-all approach to piano lessons and because I understand that each piano student has distinct goals, schedules, and learning styles and that no two students are exactly alike, my online piano lessons incorporate a wide range of techniques, concepts and styles to accommodate everyone. Whether you are a beginning or advanced student, interested in classical, or pop music, or looking for broad coaching in other musical skills like performing, playing by ear, composing or improvising, you’ll get a program that best suits your needs and your goals.</p>
+                  <p className="my-4">My first and most important goal as a piano teacher is to guide my students to their goals. I do not have a one-size-fits-all approach to piano lessons and because I understand that each piano student has distinct goals, schedules, and learning styles and that no two students are exactly alike, my online piano lessons incorporate a wide range of techniques, concepts and styles to accommodate everyone. Whether you are a beginning or advanced student, interested in classical, or pop music, or looking for broad coaching in other musical skills like performing, playing by ear, composing or improvising, you’ll get a program that best suits your needs and your goals.</p>
                 </AccordionItemPanel>
               </AccordionItem>
               <AccordionItem>
@@ -67,7 +67,7 @@ const lessonsPage: NextPage = () => {
                 </AccordionItemHeading>
                 <AccordionItemPanel>
                   <h3 className="text-3xl">What if I have to Miss a Lesson?</h3>
-                  <p className="my-4 text-xl">If you have to miss a lesson, please give me 48 hours notice. If you notify me within that time frame you will be given a makeup for that lesson, at no charge. If you don’t arrive for your lesson at all or notify me in less than 24 hours, you’ll not receive the makeup lesson. This is a fairly standard rule that most music studios implement to help keep the schedule running smoothly.</p>
+                  <p className="my-4">If you have to miss a lesson, please give me 48 hours notice. If you notify me within that time frame you will be given a makeup for that lesson, at no charge. If you don’t arrive for your lesson at all or notify me in less than 24 hours, you’ll not receive the makeup lesson. This is a fairly standard rule that most music studios implement to help keep the schedule running smoothly.</p>
                 </AccordionItemPanel>
               </AccordionItem>
               <AccordionItem>
@@ -78,8 +78,8 @@ const lessonsPage: NextPage = () => {
                 </AccordionItemHeading>
                 <AccordionItemPanel>
                   <h3 className="text-3xl">What is the Billing Cycle?</h3>
-                  <p className="my-4 text-xl">When you sign up for private lessons, you will be charged the full price of a monthly subscription which will renew each month on the first of the month. For example: if you sign up for lessons on January 20, you’ll pay the full fee. Then you’ll be charged again on February 1, March 1, etc. If you sign up in the middle or end of your first month, you will be credited with the appropriate amount of lessons you’ve paid for.</p>
-                  <p className="my-4 text-xl">The monthly subscription guarantees you 45 piano lessons per year. Months where you would have more than 4 lessons count towards your yearly total of 45. This means that there is a total of 7 weeks off per year, baked into the schedule. Those will be spread out evenly throughout the year and usually coincide with holidays.</p>
+                  <p className="my-4">When you sign up for private lessons, you will be charged the full price of a monthly subscription which will renew each month on the first of the month. For example: if you sign up for lessons on January 20, you’ll pay the full fee. Then you’ll be charged again on February 1, March 1, etc. If you sign up in the middle or end of your first month, you will be credited with the appropriate amount of lessons you’ve paid for.</p>
+                  <p className="my-4">The monthly subscription guarantees you 45 piano lessons per year. Months where you would have more than 4 lessons count towards your yearly total of 45. This means that there is a total of 7 weeks off per year, baked into the schedule. Those will be spread out evenly throughout the year and usually coincide with holidays.</p>
                 </AccordionItemPanel>
               </AccordionItem>
             </Accordion>
@@ -88,7 +88,7 @@ const lessonsPage: NextPage = () => {
 
         <section id="testimonials">
           <div className="mt-20 mb-28 max-w-[1000px] text-left">
-            <h2 className="mb-4 text-4xl">Testimonials</h2>
+            <h2 className="mb-4">Testimonials</h2>
             <div className="flex flex-col text-left items-center gap-y-6">
               <div>
                 <h2 className="mt-8 mb-4 text-2xl">Will B. from Ohio</h2>

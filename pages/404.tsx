@@ -10,7 +10,7 @@ const error404Page: NextPage = () => {
       <main className="bg-white text-wpBlack w-full flex flex-1 flex-col text-center items-center justify-center">
         <section id="500">
           <div className="px-9 max-md:mt-10 md:mt-20 mb-28 max-w-[1000px] text-left">
-            <h1 className="mb-4 text-6xl text-red-600">Error 404: Content Not Found</h1>
+            <h1 className="mb-4 text-red-600">Error 404: Content Not Found</h1>
             <p className="text-xl">The page/content you are looking for has moved, is no longer available, or has been archived.</p>
           </div>
         </section>

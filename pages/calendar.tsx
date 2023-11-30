@@ -47,7 +47,7 @@ const calendarPage: NextPage<listingsProps> = ({ listings }) => {
                 >
                   <h3 className="bg-wpRedLight text-white min-h-[88px] flex items-center justify-center font-bold text-3xl px-5 mb-3 max-sm:hyphens-auto">{name}</h3>
                   <p className="mt-4 mb-2 text-2xl px-5">{datetime}</p>
-                  <p className="mb-4 text-2xl px-5">{price}</p>
+                  <p className="mt-2 mb-4 max-sm:hyphens-auto text-2xl px-5" dangerouslySetInnerHTML={{ __html: stringWithLineBreaks(price) }} />
                   <p className="mt-2 mb-4 max-sm:hyphens-auto text-left px-5" dangerouslySetInnerHTML={{ __html: stringWithLineBreaks(description) }} />
                 </article>
               ))}

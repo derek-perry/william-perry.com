@@ -44,6 +44,12 @@ a {
   transition-duration: 100ms;
 }
 
+@media (max-width: 640px) {
+  a {
+    word-break: break-all;
+  }
+}
+
 a:hover {
   text-decoration-line: none;
   color: #924A4A;

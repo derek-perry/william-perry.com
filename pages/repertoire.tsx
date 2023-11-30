@@ -4,22 +4,22 @@ import { getSongs } from '../lib/api';
 import SiteHead from '../components/SiteHead';
 import PageFooter from '../components/PageFooter';
 
-interface listingsProps {
-  listings: listingsInnerProps[]
-}
+interface itemProps {
+  songs: songInnerProps[]
+};
 
-interface listingsInnerProps {
+interface songInnerProps {
   name: string,
   artist: string,
   year: string,
   genre: string
-}
+};
 
-const repertoirePage: NextPage<listingsProps> = ({ listings }) => {
+const repertoirePage: NextPage<itemProps> = ({ songs }) => {
   function stringWithUrlSupport(inputString: string) {
     var outputString = inputString.trim().toString().toLowerCase().replace(/\s+/g, '-').replace(/ - /g, "-").replace(/---/g, "-").replace(/\&/g, "and").replace(/;/g, "%3B").replace(/:/g, "%3A").replace(/"/g, "%22").replace(/'/g, "%27").replace(/,/g, "%2C").replace(/\?/g, "%3F").replace(/!/g, "%21").replace(/@/g, "%40").replace(/#/g, "%23").replace(/\$/g, "%24").replace(/&/g, "%26").replace(/\*/g, "%2A").replace(/=/g, "%3D").replace(/\+/g, "%2B").replace(/\(/g, "%28").replace(/\)/g, "%29").replace(/\[/g, "%5B").replace(/\]/g, "%5D").replace(/\\/g, "%5C").replace(/\//g, "%2F");
     return outputString;
-  }
+  };
   return (
     <div className="min-h-screen flex flex-col items-center justify-center">
       <SiteHead title="Repertoire - William Perry" description="William-Perry.com is the official website for William Perry - Pianist, Educator, and Conductor" url="repertoire" />
@@ -31,9 +31,9 @@ const repertoirePage: NextPage<listingsProps> = ({ listings }) => {
           </section>
         </section>
 
-        <section id="listings">
-          <div className="mb-28 max-w-[1000px] w-full overflow-hidden flex flex-col gap-x-8 gap-y-8 items-top justify-center text-center">
-            {listings
+        <section id="songs">
+          <div className="mb-28 max-w-[1080px] w-full overflow-hidden flex flex-col gap-16 items-top justify-center text-center">
+            {songs
               .slice(1)
               .map(({ name, artist, year, genre }) => (
                 <article
@@ -59,11 +59,11 @@ const repertoirePage: NextPage<listingsProps> = ({ listings }) => {
 export default repertoirePage;
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const listings = await getSongs();
+  const songs = await getSongs();
 
   return {
     props: {
-      listings
+      songs
     }
   };
 };

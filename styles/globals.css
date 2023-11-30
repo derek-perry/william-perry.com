@@ -10,3 +10,69 @@ body {
   letter-spacing: 0.2px;
   scroll-behavior: smooth;
 }
+
+h1 {
+  font-size: 3.75rem;
+  line-height: 1;
+}
+
+h2 {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+a {
+  text-decoration-line: underline;
+  color: #853535;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 100ms;
+}
+
+a:hover {
+  text-decoration-line: none;
+  color: #924A4A;
+}
+
+a:focus {
+  text-decoration-line: none;
+  color: #702828;
+}
+
+.button {
+  text-decoration-line: none;
+  color: #FFFFFF;
+  background-color: #853535;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+  border-radius: 0.25rem;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 100ms;
+}
+
+.button:hover {
+  text-decoration-line: none;
+  color: #FFFFFF;
+  background-color: #924A4A;
+}
+
+.button:focus {
+  text-decoration-line: none;
+  color: #FFFFFF;
+  background-color: #702828;
+}

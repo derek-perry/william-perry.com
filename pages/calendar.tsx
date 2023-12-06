@@ -17,7 +17,7 @@ interface eventInnerProps {
 
 const calendarPage: NextPage<itemProps> = ({ events }) => {
   function stringWithLineBreaks(inputString: string) {
-    var outputString = inputString.toString().replace(/\n/g, "<br />");
+    var outputString = inputString.toString().replace(/(?:\r\n|\r|\n)/g, '<br />');
     return outputString;
   };
   function stringWithUrlSupport(inputString: string) {
@@ -37,7 +37,7 @@ const calendarPage: NextPage<itemProps> = ({ events }) => {
 
         <section id="events">
           <div className="mb-28 max-w-[1080px] w-full overflow-hidden flex flex-row flex-wrap gap-16 items-top justify-center text-center text-xl">
-            {events
+            {events ? events
               .slice(1)
               .map(({ name, datetime, price, description }) => (
                 <article
@@ -46,11 +46,12 @@ const calendarPage: NextPage<itemProps> = ({ events }) => {
                   id={stringWithUrlSupport(name)}
                 >
                   <h3 className="bg-wpRedLight text-white min-h-[88px] flex items-center justify-center font-bold text-3xl py-5 px-5 max-sm:hyphens-auto">{name}</h3>
-                  <p className="bg-wpRedLight text-white max-sm:hyphens-auto text-2xl px-5" dangerouslySetInnerHTML={{ __html: stringWithLineBreaks(datetime) }} />
-                  <p className="bg-wpRedLight text-white py-4 max-sm:hyphens-auto text-2xl px-5" dangerouslySetInnerHTML={{ __html: stringWithLineBreaks(price) }} />
-                  <p className="my-4 max-sm:hyphens-auto text-left px-5" dangerouslySetInnerHTML={{ __html: stringWithLineBreaks(description) }} />
+                  {datetime ? (<p className="bg-wpRedLight text-white max-sm:hyphens-auto text-2xl px-5" dangerouslySetInnerHTML={{ __html: stringWithLineBreaks(datetime) }} />) : ''}
+                  {price ? (<p className="bg-wpRedLight text-white py-4 max-sm:hyphens-auto text-2xl px-5" dangerouslySetInnerHTML={{ __html: stringWithLineBreaks(price) }} />) : ''}
+                  {description ? (<p className="my-4 max-sm:hyphens-auto text-left px-5" dangerouslySetInnerHTML={{ __html: stringWithLineBreaks(description) }} />) : ''}
                 </article>
-              ))}
+              ))
+             : (<article className="rounded bg-wpWhite overflow-hidden w-full max-w-full lg:max-w-[500px]" id='no-events'><h3 className="bg-wpRedLight text-white min-h-[88px] flex items-center justify-center font-bold text-3xl py-5 px-5 max-sm:hyphens-auto">No Upcoming Events</h3></article>)}
           </div>
         </section>
       </main>

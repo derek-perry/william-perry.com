@@ -37,7 +37,7 @@ const calendarPage: NextPage<itemProps> = ({ events }) => {
 
         <section id="events">
           <div className="mb-28 max-w-[1080px] w-full overflow-hidden flex flex-row flex-wrap gap-16 items-top justify-center text-center text-xl">
-            {events ? events
+            {events.length > 1 ? events
               .slice(1)
               .map(({ name, datetime, price, description }) => (
                 <article

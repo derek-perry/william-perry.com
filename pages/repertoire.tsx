@@ -22,7 +22,7 @@ const repertoirePage: NextPage<itemProps> = ({ songs }) => {
   };
   return (
     <div className="min-h-screen flex flex-col items-center justify-center">
-      <SiteHead title="Repertoire - William Perry" description="William-Perry.com is the official website for William Perry - Pianist, Educator, and Conductor" url="repertoire" />
+      <SiteHead title="Repertoire - William Perry" description="William-Perry.com is the official website for William Perry - Pianist, Educator, and Conductor" url="repertoire" image="" />
 
       <main className="bg-white text-wpBlack w-full flex flex-1 flex-col text-center items-center justify-center px-9">
         <section id="repertoire">

@@ -15,7 +15,7 @@ import 'react-accessible-accordion/dist/fancy-example.css';
 const lessonsPage: NextPage = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center">
-      <SiteHead title="Piano Lessons - William Perry" description="William-Perry.com is the official website for William Perry - Pianist, Educator, and Conductor" url="lessons" />
+      <SiteHead title="Piano Lessons - William Perry" description="William-Perry.com is the official website for William Perry - Pianist, Educator, and Conductor" url="lessons" image="" />
 
       <main className="bg-white text-wpBlack w-full flex flex-1 flex-col text-center items-center justify-center px-9">
         <section id="lessons">

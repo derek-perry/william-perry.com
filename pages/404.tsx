@@ -5,7 +5,7 @@ import PageFooter from '../components/PageFooter';
 const error404Page: NextPage = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center">
-      <SiteHead title="Error 404: Content Not Found" description="William-Perry.com is the official website for William Perry - Pianist, Educator, and Conductor" url="404" />
+      <SiteHead title="Error 404: Content Not Found" description="William-Perry.com is the official website for William Perry - Pianist, Educator, and Conductor" url="404" image="" />
 
       <main className="bg-white text-wpBlack w-full flex flex-1 flex-col text-center items-center justify-center">
         <section id="500">

@@ -7,7 +7,7 @@ import ButtonExternal from '../components/Buttons/ButtonExternal';
 const contactPage: NextPage = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center">
-      <SiteHead title="Contact William Perry" description="William-Perry.com is the official website for William Perry - Pianist, Educator, and Conductor" url="contact" />
+      <SiteHead title="Contact William Perry" description="William-Perry.com is the official website for William Perry - Pianist, Educator, and Conductor" url="contact" image="" />
 
       <main className="bg-white text-wpBlack w-full flex flex-1 flex-col text-center items-center justify-center">
         <section id="contact">

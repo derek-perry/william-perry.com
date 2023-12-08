@@ -7,7 +7,7 @@ import LinkExternal from '../components/Links/LinkExternal';
 const privacyPage: NextPage = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center">
-      <SiteHead title="William Perry Privacy Policy" description="William-Perry.com is the official website for William Perry - Pianist, Educator, and Conductor" url="privacy" />
+      <SiteHead title="William Perry Privacy Policy" description="William-Perry.com is the official website for William Perry - Pianist, Educator, and Conductor" url="privacy" image="" />
 
       <main className="bg-white text-wpBlack w-full flex flex-1 flex-col text-center items-center justify-center">
         <article className="px-9 max-w-[1000px] w-full flex flex-1 flex-col items-center justify-center">

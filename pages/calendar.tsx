@@ -26,7 +26,7 @@ const calendarPage: NextPage<itemProps> = ({ events }) => {
   };
   return (
     <div className="min-h-screen flex flex-col items-center justify-center">
-      <SiteHead title="Calendar - William Perry" description="William-Perry.com is the official website for William Perry - Pianist, Educator, and Conductor" url="calendar" />
+      <SiteHead title="Calendar - William Perry" description="William-Perry.com is the official website for William Perry - Pianist, Educator, and Conductor" url="calendar" image="" />
 
       <main className="bg-white text-wpBlack w-full flex flex-1 flex-col text-center items-center justify-center px-9">
         <section id="calendar">

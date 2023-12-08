@@ -5,7 +5,7 @@ import PageFooter from '../components/PageFooter';
 const aboutPage: NextPage = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center">
-      <SiteHead title="About William Perry" description="William-Perry.com is the official website for William Perry - Pianist, Educator, and Conductor" url="about" />
+      <SiteHead title="About William Perry" description="William-Perry.com is the official website for William Perry - Pianist, Educator, and Conductor" url="about" image="" />
 
       <main className="bg-white text-wpBlack w-full flex flex-1 flex-col text-center items-center justify-center">
         <section id="about">

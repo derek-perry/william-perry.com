@@ -7,7 +7,7 @@ import ButtonExternal from '../components/Buttons/ButtonExternal';
 const homePage: NextPage = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center">
-      <SiteHead title="William Perry" description="William-Perry.com is the official website for William Perry - Pianist, Educator, and Conductor" url="" />
+      <SiteHead title="William Perry" description="William-Perry.com is the official website for William Perry - Pianist, Educator, and Conductor" url="" image="" />
 
       <main className="bg-white text-wpBlack w-full flex flex-1 flex-col text-center items-center justify-center px-9">
         <section id="hero">

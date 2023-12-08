@@ -4,7 +4,7 @@ import Link from 'next/link';
 interface ILinkExternalProps {
   href: string;
   title: string;
-  children?: JSX.Element[] | JSX.Element | string;
+  children?: JSX.Element | string;
   className?: string;
 };
 

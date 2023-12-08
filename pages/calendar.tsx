@@ -37,7 +37,10 @@ const calendarPage: NextPage<itemProps> = ({ events }) => {
 
         <section id="events">
           <div className="mb-28 max-w-[1080px] w-full overflow-hidden flex flex-row flex-wrap gap-16 items-top justify-center text-center text-xl">
-            {events.length > 1 ? events
+            {!events ? (
+              <p className="bg-ariWhite text-ariBlack flex items-center justify-center max-sm:hyphens-auto text-2xl pb-5 px-5">Loading Upcoming Events...</p>
+            ) : (events.length > 1 ?
+              (events
               .slice(1)
               .map(({ name, datetime, price, description }) => (
                 <article
@@ -50,8 +53,11 @@ const calendarPage: NextPage<itemProps> = ({ events }) => {
                   {price ? (<p className="bg-wpRedLight text-white py-4 max-sm:hyphens-auto text-2xl px-5" dangerouslySetInnerHTML={{ __html: stringWithLineBreaks(price) }} />) : ''}
                   {description ? (<p className="my-4 max-sm:hyphens-auto text-left px-5" dangerouslySetInnerHTML={{ __html: stringWithLineBreaks(description) }} />) : ''}
                 </article>
-              ))
-             : (<article className="rounded bg-wpWhite overflow-hidden w-full max-w-full lg:max-w-[500px]" id='no-events'><h3 className="bg-wpRedLight text-white min-h-[88px] flex items-center justify-center font-bold text-3xl py-5 px-5 max-sm:hyphens-auto">No Upcoming Events</h3></article>)}
+                )))
+              : (
+                <article className="bg-[#1c1c1a] rounded-t-md overflow-hidden w-full max-w-full" id='no-events'><h3 className="bg-ariWhite text-ariBlack min-h-[88px] flex items-center justify-center font-bold text-3xl px-5 max-sm:hyphens-auto">No Upcoming Events</h3></article>
+              )
+            )}
           </div>
         </section>
       </main>

@@ -33,20 +33,27 @@ const repertoirePage: NextPage<itemProps> = ({ songs }) => {
 
         <section id="songs">
           <div className="mb-28 max-w-[1080px] w-full overflow-hidden flex flex-col gap-16 items-top justify-center text-center">
-            {songs
-              .slice(1)
-              .map(({ name, artist, year, genre }) => (
-                <article
-                  className="p-5 flex max-md:flex-col md:flex-row text-left odd:bg-white even:bg-wpWhite"
-                  key={name}
-                  id={stringWithUrlSupport(name)}
-                >
-                  <p className="text-2xl md:max-w-[280px] md:min-w-[280px] md:border-r px-4"><strong>{name}</strong></p>
-                  <p className="text-2xl md:max-w-[180px] md:min-w-[180px] md:border-r px-4">{artist}</p>
-                  <p className="text-2xl md:max-w-[85px] md:min-w-[85px] md:border-r px-4">{year}</p>
-                  <p className="text-2xl px-4">{genre}</p>
-                </article>
-              ))}
+            {!songs ? (
+              <p className="bg-ariWhite text-ariBlack flex items-center justify-center max-sm:hyphens-auto text-2xl pb-5 px-5">Loading Songs...</p>
+            ) : (songs.length > 1 ?
+              (songs
+                .slice(1)
+                .map(({ name, artist, year, genre }) => (
+                  <article
+                    className="p-5 flex max-md:flex-col md:flex-row text-left odd:bg-white even:bg-wpWhite"
+                    key={name}
+                    id={stringWithUrlSupport(name)}
+                  >
+                    <p className="text-2xl md:max-w-[280px] md:min-w-[280px] md:border-r px-4"><strong>{name}</strong></p>
+                    <p className="text-2xl md:max-w-[180px] md:min-w-[180px] md:border-r px-4">{artist}</p>
+                    <p className="text-2xl md:max-w-[85px] md:min-w-[85px] md:border-r px-4">{year}</p>
+                    <p className="text-2xl px-4">{genre}</p>
+                  </article>
+                )))
+              : (
+                <article className="bg-[#1c1c1a] rounded-t-md overflow-hidden w-full max-w-full" id='no-songs'><h3 className="bg-ariWhite text-ariBlack min-h-[88px] flex items-center justify-center font-bold text-3xl px-5 max-sm:hyphens-auto">No Songs</h3></article>
+              )
+            )}
           </div>
         </section>
       </main>

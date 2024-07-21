@@ -12,7 +12,7 @@ const PageHeader: FC<IPageHeaderProps> = ({
   return (
     <div className='bg-white w-full'>
       <header id='header' role='banner' className='border-b border-wpRed bg-wpWhite text-white py-3 text-lg w-full'>
-        <div className='px-8 w-full max-w-[1076px] m-auto gap-x-4 gap-y-10 flex flex-row justify-between align-middle items-middle text-left'>
+        <div className='px-8 w-full max-w-[990px] m-auto gap-x-4 gap-y-10 flex flex-row justify-between align-middle items-middle text-left'>
           <LinkInternal
             title='William Perry'
             href=''
@@ -20,7 +20,7 @@ const PageHeader: FC<IPageHeaderProps> = ({
           >
             <p className='CormorantInfant text-2xl'><strong>William Perry</strong></p>
           </LinkInternal>
-          <div className='max-[969px]:hidden mt-1 gap-7 flex flex-row justify-left align-middle items-middle text-left text-base'>
+          <div className='max-[920px]:hidden mt-1 gap-7 flex flex-row justify-left align-middle items-middle text-left text-base'>
             <LinkInternal href='' title='Home' className='no-underline hover:!underline'>Home</LinkInternal>
             <LinkInternal href='lessons' title='Lessons' className='no-underline hover:!underline'>Lessons</LinkInternal>
             <LinkInternal href='repertoire' title='Repertoire' className='no-underline hover:!underline'>Repertoire</LinkInternal>
@@ -29,7 +29,7 @@ const PageHeader: FC<IPageHeaderProps> = ({
             <LinkInternal href='about' title='About' className='no-underline hover:!underline'>About</LinkInternal>
             <LinkInternal href='contact' title='Contact' className='no-underline hover:!underline'>Contact</LinkInternal>
           </div>
-          <div className='min-[969px]:hidden flex flex-row justify-left align-middle items-middle'><NavMenu /></div>
+          <div className='min-[920px]:hidden flex flex-row justify-left align-middle items-middle'><NavMenu /></div>
         </div>
       </header>
       {prevUrl && (prevUrl === 'http://localhost:3000/calendar' || prevUrl === 'https://william-perry.netlify.app/calendar' || prevUrl === 'https://william-perry.com/calendar') ? (

@@ -1,6 +1,5 @@
 import type { NextPage } from 'next';
 import SiteHead from '../components/SiteHead';
-import PageHeader from '../components/PageHeader';
 import PageFooter from '../components/PageFooter';
 import ButtonInternal from '../components/Buttons/ButtonInternal';
 import ButtonExternal from '../components/Buttons/ButtonExternal';
@@ -9,7 +8,7 @@ const homePage: NextPage = () => {
   return (
     <div className='min-h-screen flex flex-col items-center justify-center'>
       <SiteHead title='William Perry' description='William Perry is a pianist residing in Cincinnati, Ohio. He brings to every musical endeavor a unique perspective as a classical pianist, jazz pianist, electronic keyboardist and educator.' url='' image='' />
-      <PageHeader />
+
       <main className='bg-white text-wpBlack w-full flex flex-1 flex-col text-center items-center justify-center px-9'>
         <section id='hero'>
           <div className='flex flex-col text-center max-w-[810px] m-auto'>

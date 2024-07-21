@@ -1,23 +1,22 @@
 import type { NextPage } from 'next';
-import SiteHead from '../components/SiteHead';
-import PageFooter from '../components/PageFooter';
+import Page from '../components/Page';
 
 const error500Page: NextPage = () => {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center">
-      <SiteHead title="Error 500: Internal Server Error" description="William-Perry.com is the official website for William Perry - Pianist, Educator, and Conductor" url="500" image="" />
-
-      <main className="bg-white text-wpBlack w-full flex flex-1 flex-col text-center items-center justify-center">
-        <section id="500">
-          <div className="px-9 max-md:mt-10 md:mt-20 mb-28 max-w-[1000px] text-left">
-            <h1 className="mb-4 text-red-600">Error 500: Internal Server Error</h1>
-            <p className="text-xl">The server encountered an internal error and was unable to complete your request.</p>
-          </div>
-        </section>
-      </main>
-
-      <PageFooter />
-    </div>
+    <Page
+      title='Error 500: Internal Server Error - William Perry'
+      description='William Perry is a pianist residing in Cincinnati, Ohio. He brings to every musical endeavor a unique perspective as a classical pianist, jazz pianist, electronic keyboardist and educator.'
+      url='500'
+      image=''
+    >
+      <article
+        className='max-w-[760px]'
+        id='internal-server-error'
+      >
+        <h1 className='mb-4'>Error 500: Internal Server Error</h1>
+        <p className='mt-2 text-2xl'>The server encountered an internal error or misconfiguration and was unable to complete your request.</p>
+      </article>
+    </Page>
   );
 };
 

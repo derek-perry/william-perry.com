@@ -17,7 +17,7 @@ const LinkInternal: FC<ILinkInternalProps> = ({
   const linkBase = process.env.NEXT_PUBLIC_SITE_URL || '';
 
   return (
-    <Link href={linkBase + '/' + href} title={title} className={"underline text-wpRed focus:text-wpRedDark hover:text-wpRedLight hover:no-underline " + className + " transition-all motion-reduce:transition-none motion-reduce:hover:transform-none"}>
+    <Link href={linkBase + '/' + href} title={title} className={'underline text-wpRed focus:text-wpRedDark hover:text-wpRedLight hover:no-underline ' + className + ' transition-all motion-reduce:transition-none motion-reduce:hover:transform-none'}>
       {children}
     </Link>
   );

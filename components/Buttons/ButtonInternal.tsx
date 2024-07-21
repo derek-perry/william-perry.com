@@ -17,7 +17,7 @@ const ButtonInternal: FC<IButtonInternalProps> = ({
   const linkBase = process.env.NEXT_PUBLIC_SITE_URL || '';
 
   return (
-    <Link href={linkBase + '/' + href} title={title} className={"w-max m-auto rounded text-wpWhite focus:text-wpWhite hover:text-wpWhite bg-wpRed focus:bg-wpRedDark hover:bg-wpRedLight py-4 px-6 text-2xl transition-all motion-reduce:transition-none motion-reduce:hover:transform-none " + className}>
+    <Link href={linkBase + '/' + href} title={title} className={'w-max m-auto rounded text-wpWhite focus:text-wpWhite hover:text-wpWhite bg-wpRed focus:bg-wpRedDark hover:bg-wpRedLight py-4 px-6 text-2xl transition-all motion-reduce:transition-none motion-reduce:hover:transform-none ' + className}>
       {children}
     </Link>
   );

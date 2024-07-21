@@ -1,23 +1,22 @@
 import type { NextPage } from 'next';
-import SiteHead from '../components/SiteHead';
-import PageFooter from '../components/PageFooter';
+import Page from '../components/Page';
 
 const error404Page: NextPage = () => {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center">
-      <SiteHead title="Error 404: Content Not Found" description="William-Perry.com is the official website for William Perry - Pianist, Educator, and Conductor" url="404" image="" />
-
-      <main className="bg-white text-wpBlack w-full flex flex-1 flex-col text-center items-center justify-center">
-        <section id="500">
-          <div className="px-9 max-md:mt-10 md:mt-20 mb-28 max-w-[1000px] text-left">
-            <h1 className="mb-4 text-red-600">Error 404: Content Not Found</h1>
-            <p className="text-xl">The page/content you are looking for has moved, is no longer available, or has been archived.</p>
-          </div>
-        </section>
-      </main>
-
-      <PageFooter />
-    </div>
+    <Page
+      title='Error 404: Not Found - William Perry'
+      description='William Perry is a pianist residing in Cincinnati, Ohio. He brings to every musical endeavor a unique perspective as a classical pianist, jazz pianist, electronic keyboardist and educator.'
+      url='404'
+      image=''
+    >
+      <article
+        className='max-w-[680px]'
+        id='content-not-found'
+      >
+        <h1 className='mb-4'>Error 404: Not Found</h1>
+        <p className='mt-2 text-2xl'>The content you are looking for has moved, is no longer available, has been archived, or was not valid.</p>
+      </article>
+    </Page>
   );
 };
 

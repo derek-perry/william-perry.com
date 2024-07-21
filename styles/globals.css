@@ -44,10 +44,9 @@ a {
   transition-duration: 100ms;
 }
 
-@media (max-width: 640px) {
-  a {
-    word-break: break-all;
-  }
+a:active {
+  text-decoration-line: none;
+  color: #592121;
 }
 
 a:hover {
@@ -76,6 +75,12 @@ a:focus {
   transition-duration: 100ms;
 }
 
+.button:active {
+  text-decoration-line: none;
+  color: #FFFFFF;
+  background-color: #592121;
+}
+
 .button:hover {
   text-decoration-line: none;
   color: #FFFFFF;
@@ -86,4 +91,13 @@ a:focus {
   text-decoration-line: none;
   color: #FFFFFF;
   background-color: #702828;
+}
+
+hr.hrFancy {
+  padding: 0;
+  margin: 1rem auto;
+  border: none;
+  border-top: 1px solid #853535;
+  color: #853535;
+  text-align: center;
 }

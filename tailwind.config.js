@@ -12,7 +12,10 @@ module.exports = {
           wpWhite: '#F7F5F5',
           wpRed: '#853535',
           wpRedLight: '#924A4A',
-          wpRedDark: '#702828'
+          wpRedDark: '#702828',
+          wpGrey: '#E5E5E5',
+          wpGreyLight: '#F5F5F5',
+          wpGreyLighter: '#F9F9F9',
       }
     },
   },

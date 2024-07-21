@@ -7,12 +7,15 @@
     "start": "next start"
   },
   "dependencies": {
-    "googleapis": "^128.0.0",
+    "axios": "^1.7.2",
     "next": "13.2.4",
     "react": "18.2.0",
     "react-accessible-accordion": "^5.0.0",
     "react-dom": "18.2.0",
-    "ts-node": "^10.9.1"
+    "schema-dts": "^1.1.2",
+    "to-words": "^4.1.0",
+    "ts-node": "^10.9.1",
+    "usehooks-ts": "^3.1.0"
   },
   "devDependencies": {
     "@types/node": "^18.11.3",

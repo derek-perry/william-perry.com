@@ -1,76 +1,155 @@
 import React from 'react';
-import type { GetServerSideProps, NextPage } from 'next';
-import { getSongs } from '../lib/api';
-import SiteHead from '../components/SiteHead';
-import PageFooter from '../components/PageFooter';
+import { useEffect, useState } from 'react';
+import type { NextPage } from 'next';
+import api from '../lib/config';
+import { songProps } from '../lib/api';
+import Page from '../components/Page';
 
-interface itemProps {
-  songs: songInnerProps[]
-};
+const repertoirePage: NextPage = () => {
+  const [songs, setSongs] = useState<songProps[]>([]);
+  const [isLoadingSongs, setIsLoadingSongs] = useState(false);
 
-interface songInnerProps {
-  name: string,
-  artist: string,
-  year: string,
-  genre: string
-};
+  useEffect(
+    () => {
+      const getSongs = async () => {
+        try {
+          setIsLoadingSongs(true);
+          const fetchedData = [];
+          const { data } = await api.get(
+            `wp-songs?pagination[page]=1&pagination[pageSize]=10&sort[0]=id:desc&populate[Day][fields][4]=StartTime&populate[Day][fields][5]=EndTime&populate[Day][fields][6]=Price&populate[SongArtists][fields][7]=Name&populate[SongGenres][fields][8]=Name&populate[Day][populate][0]=Timezone`
+          );
+          fetchedData.push(...data?.data);
+          if (
+            data?.meta?.pagination &&
+            fetchedData.length > 0 &&
+            data?.meta?.pagination.page < data?.meta?.pagination.pageCount
+          ) {
+            const { page, pageCount } = data?.meta?.pagination;
+            for (let i = page + 1; i <= pageCount; i++) {
+              let response = await api.get(
+                `wp-songs?pagination[page]=${i}&pagination[pageSize]=10&sort[0]=id:desc&populate[Day][fields][4]=StartTime&populate[Day][fields][5]=EndTime&populate[Day][fields][6]=Price&populate[SongArtists][fields][7]=Name&populate[SongGenres][fields][8]=Name&populate[Day][populate][0]=Timezone`
+              );
+              fetchedData.push(...response.data.data);
+            };
+          };
+          fetchedData.filter((item, index, self) =>
+            index === self.findIndex((t) => (
+              t.id === item.id
+            ))
+          );
+          setSongs(fetchedData);
+        } catch (error: any) {
+          if (error?.response?.data) {
+            console.error(error?.response?.data.error?.message);
+          };
+        } finally {
+          setIsLoadingSongs(false);
+        };
+      };
 
-const repertoirePage: NextPage<itemProps> = ({ songs }) => {
-  function stringWithUrlSupport(inputString: string) {
-    var outputString = inputString.trim().toString().toLowerCase().replace(/\s+/g, '-').replace(/ - /g, "-").replace(/---/g, "-").replace(/\&/g, "and").replace(/;/g, "%3B").replace(/:/g, "%3A").replace(/"/g, "%22").replace(/'/g, "%27").replace(/,/g, "%2C").replace(/\?/g, "%3F").replace(/!/g, "%21").replace(/@/g, "%40").replace(/#/g, "%23").replace(/\$/g, "%24").replace(/&/g, "%26").replace(/\*/g, "%2A").replace(/=/g, "%3D").replace(/\+/g, "%2B").replace(/\(/g, "%28").replace(/\)/g, "%29").replace(/\[/g, "%5B").replace(/\]/g, "%5D").replace(/\\/g, "%5C").replace(/\//g, "%2F");
-    return outputString;
+      getSongs();
+    }, []
+  );
+
+  function stringWithLineBreaks(inputString: string) {
+    return inputString?.toString().replace(/(?:\r\n|\r|\n)/g, '<br />');
   };
+
+  function extractYear(inputString: string) {
+    return inputString?.toString().substring(0, 4);
+  };
+
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center">
-      <SiteHead title="Repertoire - William Perry" description="William-Perry.com is the official website for William Perry - Pianist, Educator, and Conductor" url="repertoire" image="" />
-
-      <main className="bg-white text-wpBlack w-full flex flex-1 flex-col text-center items-center justify-center px-9">
-        <section id="repertoire">
-          <section className="max-md:mt-10 md:mt-20 mb-10 max-w-[1000px] text-left">
-            <h1 className="mb-4 max-sm:text-5xl">Repertoire</h1>
-          </section>
-        </section>
-
-        <section id="songs">
-          <div className="mb-28 max-w-[1080px] w-full overflow-hidden flex flex-col gap-16 items-top justify-center text-center">
-            {!songs ? (
-              <p className="bg-ariWhite text-ariBlack flex items-center justify-center max-sm:hyphens-auto text-2xl pb-5 px-5">Loading Songs...</p>
-            ) : (songs.length > 1 ?
-              (songs
-                .slice(1)
-                .map(({ name, artist, year, genre }) => (
+    <Page
+      title='Repertoire - William Perry'
+      description='William Perry is a pianist residing in Cincinnati, Ohio. He brings to every musical endeavor a unique perspective as a classical pianist, jazz pianist, electronic keyboardist and educator.'
+      url='repertoire'
+      image=''
+      classNameMain='!px-0'
+    >
+      <>
+        <h1 className='px-8'>Repertoire</h1>
+        {isLoadingSongs ? (
+          <h2 id='loading-songs' className='mt-12 px-8'>Loading Songs...</h2>
+        ) : (
+          (songs && songs.length ? (
+            <section
+              className='bg-wpWhite mt-12 min-h-full w-full max-w-[600px] text-center'
+              id='songs-container'
+            >
+              <div
+                className='w-full flex flex-col gap-0 justify-center align-middle items-center text-center'
+                id='song-list'
+              >
+                <div className='bg-wpGrey border border-wpBlack max-md:hidden flex md:flex-row text-left'>
+                  <p className='text-2xl md:max-w-[280px] md:min-w-[280px] md:border-r md:border-wpBlack p-2'><strong>Title</strong></p>
+                  <p className='text-2xl md:max-w-[180px] md:min-w-[180px] md:border-r md:border-wpBlack p-2'>Artist</p>
+                  <p className='text-2xl md:max-w-[85px] md:min-w-[85px] md:border-r md:border-wpBlack p-2'>Year</p>
+                  <p className='text-2xl md:max-w-[150px] md:min-w-[150px] p-2'>Genre</p>
+                </div>
+                {songs.map((song) => (
                   <article
-                    className="p-5 flex max-md:flex-col md:flex-row text-left odd:bg-white even:bg-wpWhite"
-                    key={name}
-                    id={stringWithUrlSupport(name)}
+                    className='border-b border-x border-wpGrey max-md:py-4 flex max-md:flex-col md:flex-row text-left odd:bg-white even:bg-wpWhite'
+                    key={song.attributes.Name}
+                    id={stringWithLineBreaks(song.attributes.Name)}
                   >
-                    <p className="text-2xl md:max-w-[280px] md:min-w-[280px] md:border-r px-4"><strong>{name}</strong></p>
-                    <p className="text-2xl md:max-w-[180px] md:min-w-[180px] md:border-r px-4">{artist}</p>
-                    <p className="text-2xl md:max-w-[85px] md:min-w-[85px] md:border-r px-4">{year}</p>
-                    <p className="text-2xl px-4">{genre}</p>
+                    <p className='text-2xl md:max-w-[280px] md:min-w-[280px] md:border-r md:border-wpGrey px-2'><strong>{song.attributes.Name}</strong></p>
+                    <p className='text-2xl md:max-w-[180px] md:min-w-[180px] md:border-r md:border-wpGrey px-2'>{
+                      ((song.attributes.SongArtists && song.attributes.SongArtists.data?.length && song.attributes.SongArtists.data?.length > 1) ? (
+                        song.attributes.SongArtists.data?.map((artist, index) => (
+                          index === (song.attributes.SongArtists.data?.length ?? 0) - 1 ? (
+                            <span key={artist.id}>{artist.attributes.Name}</span>
+                          ) : (
+                            index === (song.attributes.SongArtists.data?.length ?? 0) - 2 ? (
+                              <span key={artist.id}>{artist.attributes.Name} and </span>
+                            ) : (
+                              <span key={artist.id}>{artist.attributes.Name}, </span>
+                            )
+                          )
+                        ))
+                      ) : (song.attributes.SongArtists && song.attributes.SongArtists.data?.length) ? (
+                        song.attributes.SongArtists.data[0].attributes.Name ?? ''
+                      ) : '')
+                    }</p>
+                    <p className='text-2xl md:max-w-[85px] md:min-w-[85px] md:border-r md:border-wpGrey px-2'>{extractYear(song.attributes.Year)}</p>
+                    <p className='text-2xl md:max-w-[150px] md:min-w-[150px] px-2'>{
+                      ((song.attributes.SongGenres && song.attributes.SongGenres.data?.length && song.attributes.SongGenres.data?.length > 1) ? (
+                        song.attributes.SongGenres.data?.map((genre, index) => (
+                          index === (song.attributes.SongGenres.data?.length ?? 0) - 1 ? (
+                            <span key={genre.id}>{genre.attributes.Name}</span>
+                          ) : (
+                            index === (song.attributes.SongGenres.data?.length ?? 0) - 2 ? (
+                              <span key={genre.id}>{genre.attributes.Name} and </span>
+                            ) : (
+                              <span key={genre.id}>{genre.attributes.Name}, </span>
+                            )
+                          )
+                        ))
+                      ) : (song.attributes.SongGenres && song.attributes.SongGenres.data?.length) ? (
+                        song.attributes.SongGenres.data[0].attributes.Name ?? ''
+                      ) : '')
+                    }</p>
                   </article>
-                )))
-              : (
-                <article className="bg-[#1c1c1a] rounded-t-md overflow-hidden w-full max-w-full" id='no-songs'><h3 className="bg-ariWhite text-ariBlack min-h-[88px] flex items-center justify-center font-bold text-3xl px-5 max-sm:hyphens-auto">No Songs</h3></article>
-              )
-            )}
-          </div>
-        </section>
-      </main>
-
-      <PageFooter />
-    </div>
+                ))}
+              </div>
+            </section>
+          ) : (
+            <section
+              className='bg-wpWhite mt-12 min-h-full w-full max-w-[600px] text-center'
+              id='no-songs-container'
+            >
+              <hr className='hrFancy max-w-[600px] !mt-0' />
+              <h2 className='mb-4' id='no-songs'>No Songs Found</h2>
+              <div className='mb-4 flex flex-row flex-wrap gap-y-0 gap-x-2 justify-center align-middle items-center text-center'>
+                <p>There are currently no songs available.</p>
+                <p>Try again later.</p>
+              </div>
+            </section>
+          ))
+        )}
+      </>
+    </Page>
   );
 };
 
 export default repertoirePage;
-
-export const getServerSideProps: GetServerSideProps = async () => {
-  const songs = await getSongs();
-
-  return {
-    props: {
-      songs
-    }
-  };
-};

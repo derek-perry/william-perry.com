@@ -34,7 +34,7 @@ const PageHeader: FC<IPageHeaderProps> = ({
       </header>
       {prevUrl && (prevUrl === 'http://localhost:3000/calendar' || prevUrl === 'https://william-perry.netlify.app/calendar' || prevUrl === 'https://william-perry.com/calendar') ? (
         <div
-          className='pt-4 px-8 bg-white w-full max-w-[1076px] m-auto flex justify-left align-top items-left text-left text-lg'
+          className='pt-4 px-8 bg-white w-full max-w-[990px] m-auto flex justify-left align-top items-left text-left text-lg'
         >
           <LinkInternal
             title='Back to Calendar'
@@ -46,7 +46,7 @@ const PageHeader: FC<IPageHeaderProps> = ({
       ) : (
         (prevUrl && (prevUrl === 'http://localhost:3000/repertoire' || prevUrl === 'https://william-perry.netlify.app/repertoire' || prevUrl === 'https://william-perry.com/repertoire') ? (
           <div
-            className='pt-4 px-8 bg-white w-full max-w-[1076px] m-auto flex justify-left align-top items-left text-left text-lg'
+            className='pt-4 px-8 bg-white w-full max-w-[990px] m-auto flex justify-left align-top items-left text-left text-lg'
           >
             <LinkInternal
               title='Back to Repertoire'
@@ -58,7 +58,7 @@ const PageHeader: FC<IPageHeaderProps> = ({
         ) : (
           (prevUrl && (prevUrl === 'http://localhost:3000/' || prevUrl === 'https://william-perry.netlify.app/' || prevUrl === 'https://william-perry.com/') ? (
             <div
-              className='pt-4 px-8 bg-white w-full max-w-[1076px] m-auto flex justify-left align-top items-left text-left text-lg'
+              className='pt-4 px-8 bg-white w-full max-w-[990px] m-auto flex justify-left align-top items-left text-left text-lg'
             >
               <LinkInternal
                 title='Back'

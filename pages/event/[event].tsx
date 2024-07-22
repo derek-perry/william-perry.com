@@ -2,7 +2,8 @@ import { GetServerSideProps, NextPage } from 'next';
 import { ToWords } from 'to-words';
 import { apiGetEvent, eventProps } from '../../lib/api';
 import Page from '../../components/Page';
-import { MusicEvent, WithContext } from 'schema-dts';
+import ItemDay from '../../components/Items/ItemDay';
+import { MusicEvent, MusicGroup, WithContext } from 'schema-dts';
 
 const toWords = new ToWords({
   localeCode: 'en-US',
@@ -38,6 +39,29 @@ const EventPage: NextPage<IEventPageProps> = ({ event, prevUrl }) => {
       return encodeURIComponent(words);
     };
   };
+
+  function markdownToHtml(content: string): string {
+    // Convert headers to HTML <h> tags with ids
+    content = content.replace(/^(#+)\s+(.*)$/gm, (match, hashes, headerText) => {
+      const level = hashes.length;
+      const id = headerText.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+      return `<h${level} id='${id}'>${headerText}</h${level}>`;
+    });
+
+    // Convert bold text (**text** or __text__)
+    content = content.replace(/\*\*(.*?)\*\*|__(.*?)__/g, '<strong>$1$2</strong>');
+
+    // Convert italic text (*text* or _text_)
+    content = content.replace(/\*(.*?)\*|_(.*?)_/g, '<em>$1$2</em>');
+
+    // Convert links ([text](url))
+    content = content.replace(/\[([^\]]+)\]\((.*?)\)/g, '<a href="$2">$1</a>');
+
+    // Convert line breaks to <br> tags
+    content = content.replace(/(?:\r\n|\r|\n)/g, '<br />');
+
+    return content;
+  }
 
   function stringWithLineBreaks(inputString: string) {
     return inputString?.toString().replace(/(?:\r\n|\r|\n)/g, '<br />');
@@ -90,40 +114,96 @@ const EventPage: NextPage<IEventPageProps> = ({ event, prevUrl }) => {
     };
   };
 
-  const lastDayIndex = event.attributes.Day && event.attributes.Day.length ? event.attributes.Day.length - 1 : 0;
-  function JsonLd<T extends MusicEvent>(json: WithContext<T>): string {
+  function createJsonLdEvent<T extends MusicEvent>(json: WithContext<T>): string {
     return JSON.stringify(json);
   };
-  const eventJSON = JsonLd<MusicEvent>({
-    "@context": "https://schema.org",
-    '@type': 'MusicEvent',
-    name: `${event.attributes.Name} - William Perry`,
-    description: event.attributes.Description ? fixDescription(event.attributes.Description) : 'William Perry is a pianist residing in Cincinnati, Ohio. He brings to every musical endeavor a unique perspective as a classical pianist, jazz pianist, electronic keyboardist and educator.',
-    url: `${siteUrl}/event/${checkNumberName(event.attributes.Name)}?id=${event.id}`,
-    startDate: event.attributes.Day && event.attributes.Day.length ? new Date(event.attributes.Day[0].StartTime).toISOString() : '',
-    endDate: event.attributes.Day && event.attributes.Day.length ? new Date(event.attributes.Day[lastDayIndex].EndTime).toISOString() : '',
-    image: event.attributes.Image?.data ? event.attributes.Image.data?.attributes.url : '',
-    performer: {
-      '@type': 'Person',
-      name: 'William Perry',
-      sameAs: 'https://william-perry.com'
+  function createJsonLdMusicGroup<T extends MusicGroup>(json: WithContext<T>): string {
+    return JSON.stringify(json);
+  };
+  function getJsonLdMusicGroupDays() {
+    if (event.attributes.Day) {
+      if (event.attributes.Day.length > 1) {
+        return event.attributes.Day.map((DayItem) => (
+          {
+            '@type': 'MusicEvent',
+            name: `${event.attributes.Name} - William Perry`,
+            description: event.attributes.Description ? fixDescription(event.attributes.Description) : 'William Perry is a pianist residing in Cincinnati, Ohio. He brings to every musical endeavor a unique perspective as a classical pianist, jazz pianist, electronic keyboardist and educator.',
+            url: `${siteUrl}/event/${checkNumberName(event.attributes.Name)}?id=${event.id}`,
+            startDate: DayItem.StartTime ? new Date(DayItem.StartTime).toISOString() : '',
+            endDate: DayItem.EndTime ? new Date(DayItem.EndTime).toISOString() : '',
+            image: event.attributes.Image?.data ? event.attributes.Image.data?.attributes.url : '',
+            performer: {
+              '@type': 'Person',
+              name: 'William Perry',
+              sameAs: 'https://william-perry.com'
+            },
+            location: event.attributes.Day && DayItem.Location.data?.attributes.StreetAddress ? {
+              '@type': 'Place',
+              name: DayItem.Location.data?.attributes.Name ? DayItem.Location.data?.attributes.Name : '',
+              sameAs: DayItem.Location.data?.attributes.Website ? DayItem.Location.data?.attributes.Website : '',
+              address: {
+                '@type': 'PostalAddress',
+                addressCountry: 'USA',
+                streetAddress: DayItem.Location.data?.attributes.StreetAddress ? DayItem.Location.data?.attributes.StreetAddress : '',
+                addressLocality: DayItem.Location.data?.attributes.City ? DayItem.Location.data?.attributes.City : '',
+                addressRegion: DayItem.Location.data?.attributes.State ? DayItem.Location.data?.attributes.State : '',
+                postalCode: DayItem.Location.data?.attributes.PostalCode ? DayItem.Location.data?.attributes.PostalCode : ''
+              }
+            } : ''
+          }
+        ));
+      } else {
+        return [];
+      }
     }
-  });
-  // const eventJSON: Event = {
-  //   "@context" : "https://schema.org",
-  //   '@type': 'MusicEvent',
-  //   name: `${event.attributes.Name} - William Perry`,
-  //   description: event.attributes.Description ? event.attributes.Description : 'William Perry is a pianist residing in Cincinnati, Ohio. He brings to every musical endeavor a unique perspective as a classical pianist, jazz pianist, electronic keyboardist and educator.',
-  //   url: `${siteUrl}/event/${checkNumberName(event.attributes.Name)}?id=${event.id}`,
-  //   startDate: event.attributes.Day && event.attributes.Day.length ? new Date(event.attributes.Day[0].StartTime).toISOString() : '',
-  //   endDate: event.attributes.Day && event.attributes.Day.length ? new Date(event.attributes.Day[lastDayIndex].EndTime).toISOString() : '',
-  //   image: event.attributes.Image?.data ? event.attributes.Image.data?.attributes.url : '',
-  //   performer: {
-  //     '@type': 'Person',
-  //     name: 'William Perry',
-  //     sameAs: 'https://william-perry.com'
-  //   }
-  // };
+  };
+  function getJsonLd() {
+    if (event.attributes.Day) {
+      if (event.attributes.Day.length > 1) {
+        return createJsonLdMusicGroup<MusicGroup>(
+          {
+            '@context': 'https://schema.org',
+            '@type': 'MusicGroup',
+            name: 'William Perry',
+            sameAs: 'https://william-perry.com',
+            event: getJsonLdMusicGroupDays() as []
+          }
+        )
+      } else {
+        const lastDayIndex = event.attributes.Day && event.attributes.Day.length ? event.attributes.Day.length - 1 : 0;
+        return createJsonLdEvent<MusicEvent>(
+          {
+            '@context': 'https://schema.org',
+            '@type': 'MusicEvent',
+            name: `${event.attributes.Name} - William Perry`,
+            description: event.attributes.Description ? fixDescription(event.attributes.Description) : 'William Perry is a pianist residing in Cincinnati, Ohio. He brings to every musical endeavor a unique perspective as a classical pianist, jazz pianist, electronic keyboardist and educator.',
+            url: `${siteUrl}/event/${checkNumberName(event.attributes.Name)}?id=${event.id}`,
+            startDate: event.attributes.Day && event.attributes.Day.length ? new Date(event.attributes.Day[0].StartTime).toISOString() : '',
+            endDate: event.attributes.Day && event.attributes.Day.length ? new Date(event.attributes.Day[lastDayIndex].EndTime).toISOString() : '',
+            image: event.attributes.Image?.data ? event.attributes.Image.data?.attributes.url : '',
+            performer: {
+              '@type': 'Person',
+              name: 'William Perry',
+              sameAs: 'https://william-perry.com'
+            },
+            location: event.attributes.Day && event.attributes.Day.length && event.attributes.Day[0].Location && event.attributes.Day[0].Location.data?.attributes.StreetAddress ? {
+              '@type': 'Place',
+              name: event.attributes.Day[0].Location.data?.attributes.Name ? event.attributes.Day[0].Location.data?.attributes.Name : '',
+              sameAs: event.attributes.Day[0].Location.data?.attributes.Website ? event.attributes.Day[0].Location.data?.attributes.Website : '',
+              address: {
+                '@type': 'PostalAddress',
+                addressCountry: 'USA',
+                streetAddress: event.attributes.Day[0].Location.data?.attributes.StreetAddress ? event.attributes.Day[0].Location.data?.attributes.StreetAddress : '',
+                addressLocality: event.attributes.Day[0].Location.data?.attributes.City ? event.attributes.Day[0].Location.data?.attributes.City : '',
+                addressRegion: event.attributes.Day[0].Location.data?.attributes.State ? event.attributes.Day[0].Location.data?.attributes.State : '',
+                postalCode: event.attributes.Day[0].Location.data?.attributes.PostalCode ? event.attributes.Day[0].Location.data?.attributes.PostalCode : ''
+              }
+            } : ''
+          }
+        )
+      }
+    };
+  };
 
   return (
     <>
@@ -135,9 +215,8 @@ const EventPage: NextPage<IEventPageProps> = ({ event, prevUrl }) => {
           image={event.attributes.Image?.data ? event.attributes.Image.data?.attributes.url : ``}
           prevUrl={prevUrl ? prevUrl : ''}
         >
-          <script type='application/ld+json'>{eventJSON}</script>
+          <script type='application/ld+json'>{getJsonLd()}</script>
           <article
-            className='max-w-[1000px]'
             id={checkNumberName(event.attributes.Name)}
           >
             {event.attributes.Image?.data ? (
@@ -151,63 +230,18 @@ const EventPage: NextPage<IEventPageProps> = ({ event, prevUrl }) => {
               </div>
             ) : ''}
             {event.attributes.Name ? (
-              <h3 className='font-bold text-5xl max-md:text-4xl'>{event.attributes.Name}</h3>
+              <h3 className='mb-4 font-bold text-5xl max-md:text-4xl'>{event.attributes.Name}</h3>
             ) : ''}
             {event.attributes.Day && event.attributes.Day.length ? (
-              <div className='flex flex-col gap-4 mt-6'>
-                {event.attributes.Day.map((DayItem) => (
-                  (DayItem.StartTime && DayItem.Price) ? (
-                    <div
-                      className='bg-wpGreyLight rounded shadow py-2'
-                    >
-                      {DayItem.StartTime ? (
-                        <div
-                          className='flex flex-row flex-wrap gap-y-0 gap-x-2 px-2'
-                        >
-                          <p className='text-2xl'>{formatDate(DayItem.StartTime, DayItem.Timezone.data?.attributes.Offset)}</p>
-                          {(DayItem.EndTime ? (
-                            <div className='flex flex-row flex-wrap gap-y-0 gap-x-2'>
-                              <p className='text-2xl'> - </p>
-                              <p className='text-2xl'>{formatDate(DayItem.EndTime, DayItem.Timezone.data?.attributes.Offset)}</p>
-                              {(DayItem.Timezone.data ? (
-                                <p className='text-2xl'>{DayItem.Timezone.data.attributes.Abbreviation}</p>
-                              ) : '')}
-                            </div>
-                          ) : '')}
-                        </div>
-                      ) : ''}
-                      {DayItem.Price ? (
-                        <>
-                          <hr className='border-wpGrey !mb-1 !mt-2' />
-                          <p className='text-2xl px-2' dangerouslySetInnerHTML={{ __html: stringWithLineBreaks(DayItem.Price) }} />
-                        </>
-                      ) : ''}
-                    </div>
-                  ) : (
-                    <>
-                      {DayItem.StartTime ? (
-                        <div
-                          className='bg-wpGreyLight rounded shadow flex flex-row flex-wrap gap-y-0 gap-x-4 p-2'
-                        >
-                          <p className='text-2xl'>{formatDate(DayItem.StartTime, DayItem.Timezone.data?.attributes.Offset)}</p>
-                          {(DayItem.EndTime ? (
-                            <div className='flex flex-row flex-wrap gap-y-0 gap-x-2 justify-center align-middle items-center'>
-                              <p className='text-2xl'> - </p>
-                              <p className='text-2xl'>{formatDate(DayItem.EndTime, DayItem.Timezone.data?.attributes.Offset)}</p>
-                              {(DayItem.Timezone.data ? (
-                                <p className='text-2xl'>{DayItem.Timezone.data.attributes.Abbreviation}</p>
-                              ) : '')}
-                            </div>
-                          ) : '')}
-                        </div>
-                      ) : ''}
-                    </>
-                  )
-                ))}
+              <div className='text-left'>
+                <ItemDay
+                  Days={event.attributes.Day}
+                  className='text-left justify-left align-middle items-left'
+                />
               </div>
             ) : ''}
-            {event.attributes.Description ? (
-              <p className='mt-4 text-2xl text-left' dangerouslySetInnerHTML={{ __html: stringWithLineBreaks(event.attributes.Description) }} />
+            {event.attributes.Content ? (
+              <p className='mt-4 text-2xl text-left' dangerouslySetInnerHTML={{ __html: markdownToHtml(event.attributes.Content) }} />
             ) : ''}
           </article>
         </Page>

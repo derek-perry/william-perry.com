@@ -11,6 +11,7 @@ export interface eventProps {
     Name: string;
     Day: eventDayProps[] | null;
     Description: string;
+    Content: string;
     Image: {
       data: {
         attributes: {
@@ -28,6 +29,7 @@ export interface eventDayProps {
   id: number;
   StartTime: string;
   EndTime: string;
+  Price: string;
   Timezone: {
     data: {
       attributes: {
@@ -37,11 +39,22 @@ export interface eventDayProps {
       };
     } | null;
   };
-  Price: string;
+  Location: {
+    data: {
+      attributes: {
+        Name: string;
+        StreetAddress: string;
+        City: string;
+        State: string;
+        PostalCode: string;
+        Website: string;
+      };
+    } | null;
+  };
 };
 export const apiGetEvent = {
   get: (id?: string) =>
-    api.get<IGetEventResponse>(`wp-events/${id ?? '0'}?populate[Image][fields][0]=height&populate[Image][fields][1]=width&populate[Image][fields][2]=url&populate[Image][fields][3]=alternativeText&populate[Day][fields][4]=StartTime&populate[Day][fields][5]=EndTime&populate[Day][fields][6]=Price&populate[Day][populate][0]=Timezone`)
+    api.get<IGetEventResponse>(`wp-events/${id ?? '0'}?populate[Image][fields][0]=height&populate[Image][fields][1]=width&populate[Image][fields][2]=url&populate[Image][fields][3]=alternativeText&populate[Day][fields][4]=StartTime&populate[Day][fields][5]=EndTime&populate[Day][fields][6]=Price&populate[Day][populate][0]=Timezone&populate[Day][populate][1]=Location`)
 };
 
 // Get Page

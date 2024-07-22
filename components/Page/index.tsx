@@ -26,7 +26,6 @@ const Page: FC<IPageProps> = ({
 }): JSX.Element => {
   return (
     <>
-
       <SiteHead
         title={title ? title : 'William Perry'}
         description={description ? description : 'William Perry is a pianist residing in Cincinnati, Ohio. He brings to every musical endeavor a unique perspective as a classical pianist, jazz pianist, electronic keyboardist and educator.'}
@@ -35,7 +34,7 @@ const Page: FC<IPageProps> = ({
       />
       <div className='min-h-screen flex flex-col items-center justify-center'>
         {showHeader && <PageHeader prevUrl={prevUrl ? prevUrl : ''} />}
-        <main className={'bg-white text-wpBlack w-full flex flex-1 flex-col items-center justify-center px-8 max-md:pt-10 md:pt-20 pb-20 ' + classNameMain}>
+        <main className={'bg-white text-wpBlack w-full max-w-[990px] flex flex-1 flex-col items-center justify-center px-8 max-md:pt-10 md:pt-20 pb-20 ' + classNameMain}>
           {children}
         </main>
         <PageFooter />

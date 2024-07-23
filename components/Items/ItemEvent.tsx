@@ -41,10 +41,11 @@ const ItemEvent: FC<IItemEventProps> = ({
         href={`event/${Name}?id=${id}`}
         title={Name}
         className='w-auto min-w-auto'
-      ><h3 className='font-bold text-4xl'>{Name}</h3></LinkInternal>
+      ><h3 className='font-bold text-3xl sm:text-4xl'>{Name}</h3></LinkInternal>
       {Day && Day.length ? (
         <ItemDay
           Days={Day}
+          centered={true}
           className='text-center justify-center align-middle items-middle'
         />
       ) : ''}

@@ -31,6 +31,28 @@ h4 {
   line-height: 1.75rem;
 }
 
+@media (max-width: 640px) {
+  h1 {
+    font-size: 2.5rem;
+    line-height: 1;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+    line-height: 2rem;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+
+  h4 {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+}
+
 p {
   font-size: 1.25rem;
   line-height: 1.75rem;

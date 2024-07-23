@@ -16,7 +16,7 @@ const repertoirePage: NextPage = () => {
           setIsLoadingSongs(true);
           const fetchedData = [];
           const { data } = await api.get(
-            `wp-songs?pagination[page]=1&pagination[pageSize]=10&sort[0]=id:desc&populate[Day][fields][4]=StartTime&populate[Day][fields][5]=EndTime&populate[Day][fields][6]=Price&populate[SongArtists][fields][7]=Name&populate[SongGenres][fields][8]=Name&populate[Day][populate][0]=Timezone`
+            `wp-songs?pagination[page]=1&pagination[pageSize]=10&sort[0]=Name:asc&sort[1]=Year:asc`
           );
           fetchedData.push(...data?.data);
           if (
@@ -27,7 +27,7 @@ const repertoirePage: NextPage = () => {
             const { page, pageCount } = data?.meta?.pagination;
             for (let i = page + 1; i <= pageCount; i++) {
               let response = await api.get(
-                `wp-songs?pagination[page]=${i}&pagination[pageSize]=10&sort[0]=id:desc&populate[Day][fields][4]=StartTime&populate[Day][fields][5]=EndTime&populate[Day][fields][6]=Price&populate[SongArtists][fields][7]=Name&populate[SongGenres][fields][8]=Name&populate[Day][populate][0]=Timezone`
+                `wp-songs?pagination[page]=${i}&pagination[pageSize]=10&sort[0]=Name:asc&sort[1]=Year:asc`
               );
               fetchedData.push(...response.data.data);
             };
@@ -55,10 +55,6 @@ const repertoirePage: NextPage = () => {
     return inputString?.toString().replace(/(?:\r\n|\r|\n)/g, '<br />');
   };
 
-  function extractYear(inputString: string) {
-    return inputString?.toString().substring(0, 4);
-  };
-
   return (
     <Page
       title='Repertoire - William Perry'
@@ -74,61 +70,29 @@ const repertoirePage: NextPage = () => {
         ) : (
           (songs && songs.length ? (
             <section
-              className='bg-wpWhite mt-12 min-h-full w-full max-w-[600px] text-center'
+              className='bg-wpWhite mt-12 min-h-full w-full max-lg:max-w-[600px] min-lg:max-w-[990px] text-center'
               id='songs-container'
             >
               <div
                 className='w-full flex flex-col gap-0 justify-center align-middle items-center text-center'
                 id='song-list'
               >
-                <div className='bg-wpGrey border border-wpBlack max-md:hidden flex md:flex-row text-left'>
-                  <p className='text-2xl md:max-w-[280px] md:min-w-[280px] md:border-r md:border-wpBlack p-2'><strong>Title</strong></p>
-                  <p className='text-2xl md:max-w-[180px] md:min-w-[180px] md:border-r md:border-wpBlack p-2'>Artist</p>
-                  <p className='text-2xl md:max-w-[85px] md:min-w-[85px] md:border-r md:border-wpBlack p-2'>Year</p>
-                  <p className='text-2xl md:max-w-[150px] md:min-w-[150px] p-2'>Genre</p>
+                <div className='bg-wpGrey border border-wpBlack max-lg:hidden flex lg:flex-row text-left'>
+                  <p className='text-2xl lg:min-w-[300px] lg:border-r lg:border-wpBlack p-2'><strong>Title</strong></p>
+                  <p className='text-2xl lg:min-w-[300px] lg:border-r lg:border-wpBlack p-2'>Artist</p>
+                  <p className='text-2xl lg:min-w-[190px] lg:border-r lg:border-wpBlack p-2'>Year</p>
+                  <p className='text-2xl lg:min-w-[200px] p-2'>Genre</p>
                 </div>
                 {songs.map((song) => (
                   <article
-                    className='border-b border-x border-wpGrey max-md:py-4 flex max-md:flex-col md:flex-row text-left odd:bg-white even:bg-wpWhite'
+                    className='w-full border-b max-lg:border-t border-x border-wpGrey max-lg:py-4 flex gap-y-2 max-lg:flex-col lg:flex-row max-sm:text-left text-center lg:text-left odd:bg-white even:bg-wpWhite'
                     key={song.attributes.Name}
                     id={stringWithLineBreaks(song.attributes.Name)}
                   >
-                    <p className='text-2xl md:max-w-[280px] md:min-w-[280px] md:border-r md:border-wpGrey px-2'><strong>{song.attributes.Name}</strong></p>
-                    <p className='text-2xl md:max-w-[180px] md:min-w-[180px] md:border-r md:border-wpGrey px-2'>{
-                      ((song.attributes.SongArtists && song.attributes.SongArtists.data?.length && song.attributes.SongArtists.data?.length > 1) ? (
-                        song.attributes.SongArtists.data?.map((artist, index) => (
-                          index === (song.attributes.SongArtists.data?.length ?? 0) - 1 ? (
-                            <span key={artist.id}>{artist.attributes.Name}</span>
-                          ) : (
-                            index === (song.attributes.SongArtists.data?.length ?? 0) - 2 ? (
-                              <span key={artist.id}>{artist.attributes.Name} and </span>
-                            ) : (
-                              <span key={artist.id}>{artist.attributes.Name}, </span>
-                            )
-                          )
-                        ))
-                      ) : (song.attributes.SongArtists && song.attributes.SongArtists.data?.length) ? (
-                        song.attributes.SongArtists.data[0].attributes.Name ?? ''
-                      ) : '')
-                    }</p>
-                    <p className='text-2xl md:max-w-[85px] md:min-w-[85px] md:border-r md:border-wpGrey px-2'>{extractYear(song.attributes.Year)}</p>
-                    <p className='text-2xl md:max-w-[150px] md:min-w-[150px] px-2'>{
-                      ((song.attributes.SongGenres && song.attributes.SongGenres.data?.length && song.attributes.SongGenres.data?.length > 1) ? (
-                        song.attributes.SongGenres.data?.map((genre, index) => (
-                          index === (song.attributes.SongGenres.data?.length ?? 0) - 1 ? (
-                            <span key={genre.id}>{genre.attributes.Name}</span>
-                          ) : (
-                            index === (song.attributes.SongGenres.data?.length ?? 0) - 2 ? (
-                              <span key={genre.id}>{genre.attributes.Name} and </span>
-                            ) : (
-                              <span key={genre.id}>{genre.attributes.Name}, </span>
-                            )
-                          )
-                        ))
-                      ) : (song.attributes.SongGenres && song.attributes.SongGenres.data?.length) ? (
-                        song.attributes.SongGenres.data[0].attributes.Name ?? ''
-                      ) : '')
-                    }</p>
+                    <p className='max-lg:text-3xl text-2xl lg:min-w-[300px] lg:border-r lg:border-wpGrey px-2'><strong>{song.attributes.Name}</strong></p>
+                    <p className='text-2xl lg:min-w-[300px] lg:border-r lg:border-wpGrey px-2'>{song.attributes.Artist}</p>
+                    <p className='text-2xl lg:min-w-[190px] lg:border-r lg:border-wpGrey px-2'>{song.attributes.Year}</p>
+                    <p className='text-2xl lg:min-w-[200px] px-2'>{song.attributes.Genre}</p>
                   </article>
                 ))}
               </div>

@@ -95,24 +95,8 @@ export interface songProps {
   id: number;
   attributes: {
     Name: string;
+    Artist: string;
     Year: string;
-    SongArtists: {
-      data: songArtistProps[] | null;
-    };
-    SongGenres: {
-      data: songGenreProps[] | null;
-    };
-  };
-};
-export interface songArtistProps {
-  id: number;
-  attributes: {
-    Name: string;
-  };
-};
-export interface songGenreProps {
-  id: number;
-  attributes: {
-    Name: string;
+    Genre: string;
   };
 };

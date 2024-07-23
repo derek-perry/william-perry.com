@@ -4,11 +4,13 @@ import { eventDayProps } from '../../lib/api';
 
 interface IItemDayProps {
   Days: eventDayProps[] | null;
+  centered: boolean;
   className?: string;
 };
 
 const ItemDay: FC<IItemDayProps> = ({
   Days,
+  centered,
   className
 }): JSX.Element => {
   function stringWithLineBreaks(inputString: string) {
@@ -58,58 +60,168 @@ const ItemDay: FC<IItemDayProps> = ({
 
   return (
     <>
-      {Days && Days.length ? (
-        <div className='flex flex-col gap-4'>
-          {Days.map((DayItem) => (
-            (DayItem.StartTime && DayItem.Price && DayItem.Location?.data) ? (
-              <div
-                className='bg-wpGreyLight rounded shadow py-2'
-              >
-                <div
-                  className={cn('flex flex-row flex-wrap gap-y-0 gap-x-2 px-2 ', className)}
-                >
-                  <p className='text-2xl'>{formatDate(DayItem.StartTime, DayItem.Timezone.data?.attributes.Offset)}</p>
-                  {(DayItem.EndTime ? (
-                    <div className='flex flex-row flex-wrap gap-y-0 gap-x-2 justify-center align-middle items-center'>
-                      <p className='text-2xl'> - </p>
-                      <p className='text-2xl'>{formatDate(DayItem.EndTime, DayItem.Timezone.data?.attributes.Offset)}</p>
-                      {(DayItem.Timezone.data ? (
-                        <p className='text-2xl'>{DayItem.Timezone.data.attributes.Abbreviation}</p>
-                      ) : '')}
-                    </div>
-                  ) : '')}
-                </div>
-                <hr className='border-wpGrey !mb-1 !mt-2' />
-                <p className='text-2xl px-2' dangerouslySetInnerHTML={{ __html: stringWithLineBreaks(DayItem.Price) }} />
-                <hr className='border-wpGrey !mb-1 !mt-2' />
-                {DayItem.Location.data?.attributes.Name ? (
-                  <p className='text-2xl px-2'>{DayItem.Location.data?.attributes.Name}</p>
-                ) : ''}
-                <p className='text-2xl px-2'>{DayItem.Location.data?.attributes.StreetAddress}</p>
-                <p className={cn('text-2xl px-2 flex flex-row ', className)}>{DayItem.Location.data?.attributes.City ? DayItem.Location.data?.attributes.City : ''}{DayItem.Location.data?.attributes.State ? (', ' + DayItem.Location.data?.attributes.State) : ''}{DayItem.Location.data?.attributes.PostalCode ? (' ' + DayItem.Location.data?.attributes.PostalCode) : ''}</p>
-              </div>
-            ) : (
+      {Days ? (
+        Days && Days.length > 1 ? (
+          <div className='flex flex-col gap-4'>
+            {Days.map((DayItem) => (
               <>
                 {DayItem.StartTime ? (
                   <div
-                    className={cn('bg-wpGreyLight rounded shadow flex flex-row flex-wrap gap-y-0 gap-x-2 p-2 ', className)}
+                    className={cn('bg-wpGreyLight rounded shadow flex flex-col gap-y-0 gap-x-2 py-2 ',
+                      {
+                        'text-center justify-center items-center': centered
+                      },
+                      {
+                        'text-left justify-left items-left': !centered
+                      }
+                    )}
                   >
-                    <p className='text-2xl'>{formatDate(DayItem.StartTime, DayItem.Timezone.data?.attributes.Offset)}</p>
-                    {(DayItem.EndTime ? (
-                      <div className='flex flex-row flex-wrap gap-y-0 gap-x-2 justify-center align-middle items-center'>
-                        <p className='text-2xl'> - </p>
-                        <p className='text-2xl'>{formatDate(DayItem.EndTime, DayItem.Timezone.data?.attributes.Offset)}</p>
-                        {(DayItem.Timezone.data ? (
-                          <p className='text-2xl'>{DayItem.Timezone.data.attributes.Abbreviation}</p>
-                        ) : '')}
+                    <div
+                      className={cn('flex flex-row flex-wrap gap-y-0 gap-x-2 px-2 ',
+                        {
+                          'text-center justify-center items-center': centered
+                        },
+                        {
+                          'text-left justify-left items-left': !centered
+                        }
+                      )}
+                    >
+                      <p className='text-2xl'>{formatDate(DayItem.StartTime, DayItem.Timezone.data?.attributes.Offset)}</p>
+                      {(DayItem.EndTime ? (
+                        <div
+                          className={cn('flex flex-row flex-wrap gap-y-0 gap-x-2 ',
+                            {
+                              'text-center justify-center items-center': centered
+                            },
+                            {
+                              'text-left justify-left items-left': !centered
+                            }
+                          )}
+                        >
+                          <p className='text-2xl'> - </p>
+                          <p className='text-2xl'>{formatDate(DayItem.EndTime, DayItem.Timezone.data?.attributes.Offset)}</p>
+                          {(DayItem.Timezone.data ? (
+                            <p className='text-2xl'>{DayItem.Timezone.data.attributes.Abbreviation}</p>
+                          ) : '')}
+                        </div>
+                      ) : '')}
+                    </div>
+                    {(DayItem.Price ? (
+                      <div
+                        className={cn('flex flex-col gap-y-0 gap-x-2 border-t border-wpGrey w-full mt-2 pt-2 ',
+                          {
+                            'text-center justify-center items-center': centered
+                          },
+                          {
+                            'text-left justify-left items-left': !centered
+                          }
+                        )}
+                      >
+                        <p className='text-2xl px-2' dangerouslySetInnerHTML={{ __html: stringWithLineBreaks(DayItem.Price) }} />
+                      </div>
+                    ) : '')}
+                    {(DayItem.Location.data ? (
+                      <div
+                        className={cn('flex flex-col gap-y-0 gap-x-2 border-t border-wpGrey w-full mt-2 pt-2 ',
+                          {
+                            'text-center justify-center items-center': centered
+                          },
+                          {
+                            'text-left justify-left items-left': !centered
+                          }
+                        )}
+                      >
+                        {DayItem.Location.data?.attributes.Name ? (
+                          <p className='text-2xl px-2'>{DayItem.Location.data?.attributes.Name}</p>
+                        ) : ''}
+                        <p className='text-2xl px-2'>{DayItem.Location.data?.attributes.StreetAddress}</p>
+                        <p className={cn('text-2xl px-2 flex flex-row ', className)}>{DayItem.Location.data?.attributes.City ? DayItem.Location.data?.attributes.City : ''}{DayItem.Location.data?.attributes.State ? (', ' + DayItem.Location.data?.attributes.State) : ''}{DayItem.Location.data?.attributes.PostalCode ? (' ' + DayItem.Location.data?.attributes.PostalCode) : ''}</p>
                       </div>
                     ) : '')}
                   </div>
                 ) : ''}
               </>
-            )
-          ))}
-        </div>
+            ))}
+          </div>
+        ) : (
+          <>
+            {Days[0] ? (
+              <div
+                className={cn('bg-wpGreyLight rounded shadow flex flex-col gap-y-0 gap-x-2 py-2 ',
+                  {
+                    'text-center justify-center items-center': centered
+                  },
+                  {
+                    'text-left justify-left items-left': !centered
+                  }
+                )}
+              >
+                <div
+                  className={cn('flex flex-row flex-wrap gap-y-0 gap-x-2 px-2 ',
+                    {
+                      'text-center justify-center items-center': centered
+                    },
+                    {
+                      'text-left justify-left items-left': !centered
+                    }
+                  )}
+                >
+                  <p className='text-2xl'>{formatDate(Days[0].StartTime, Days[0].Timezone.data?.attributes.Offset)}</p>
+                  {(Days[0].EndTime ? (
+                    <div
+                      className={cn('flex flex-row flex-wrap gap-y-0 gap-x-2 ',
+                        {
+                          'text-center justify-center items-center': centered
+                        },
+                        {
+                          'text-left justify-left items-left': !centered
+                        }
+                      )}
+                    >
+                      <p className='text-2xl'> - </p>
+                      <p className='text-2xl'>{formatDate(Days[0].EndTime, Days[0].Timezone.data?.attributes.Offset)}</p>
+                      {(Days[0].Timezone.data ? (
+                        <p className='text-2xl'>{Days[0].Timezone.data.attributes.Abbreviation}</p>
+                      ) : '')}
+                    </div>
+                  ) : '')}
+                </div>
+                {(Days[0].Price ? (
+                  <div
+                    className={cn('flex flex-col gap-y-0 gap-x-2 border-t border-wpGrey w-full mt-2 pt-2 ',
+                      {
+                        'text-center justify-center items-center': centered
+                      },
+                      {
+                        'text-left justify-left items-left': !centered
+                      }
+                    )}
+                  >
+                    <p className='text-2xl px-2' dangerouslySetInnerHTML={{ __html: stringWithLineBreaks(Days[0].Price) }} />
+                  </div>
+                ) : '')}
+                {(Days[0].Location.data ? (
+                  <div
+                    className={cn('flex flex-col gap-y-0 gap-x-2 border-t border-wpGrey w-full mt-2 pt-2 ',
+                      {
+                        'text-center justify-center items-center': centered
+                      },
+                      {
+                        'text-left justify-left items-left': !centered
+                      }
+                    )}
+                  >
+                    {Days[0].Location.data?.attributes.Name ? (
+                      <p className='text-2xl px-2'>{Days[0].Location.data?.attributes.Name}</p>
+                    ) : ''}
+                    <p className='text-2xl px-2'>{Days[0].Location.data?.attributes.StreetAddress}</p>
+                    <p className={cn('text-2xl px-2 flex flex-row ', className)}>{Days[0].Location.data?.attributes.City ? Days[0].Location.data?.attributes.City : ''}{Days[0].Location.data?.attributes.State ? (', ' + Days[0].Location.data?.attributes.State) : ''}{Days[0].Location.data?.attributes.PostalCode ? (' ' + Days[0].Location.data?.attributes.PostalCode) : ''}</p>
+                  </div>
+                ) : '')}
+              </div>
+            ) : ''}
+          </>
+        )
       ) : ''}
     </>
   );

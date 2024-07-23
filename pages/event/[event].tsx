@@ -22,7 +22,7 @@ interface IEventPageProps {
 const EventPage: NextPage<IEventPageProps> = ({ event, prevUrl }) => {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ? process.env.NEXT_PUBLIC_SITE_URL : 'https://william-perry.com';
 
-  if (event.attributes.Day && event.attributes.Day.length) {
+  if (event && event.attributes.Day && event.attributes.Day.length) {
     event.attributes.Day.sort((a, b) => {
       const aStartTime = new Date(a.StartTime).getTime();
       const bStartTime = new Date(b.StartTime).getTime();
@@ -61,7 +61,7 @@ const EventPage: NextPage<IEventPageProps> = ({ event, prevUrl }) => {
     content = content.replace(/(?:\r\n|\r|\n)/g, '<br />');
 
     return content;
-  }
+  };
 
   function stringWithLineBreaks(inputString: string) {
     return inputString?.toString().replace(/(?:\r\n|\r|\n)/g, '<br />');
@@ -72,45 +72,6 @@ const EventPage: NextPage<IEventPageProps> = ({ event, prevUrl }) => {
       return stringWithLineBreaks(inputString?.split(' ').slice(0, 30).join(' ') + '...');
     } else {
       return stringWithLineBreaks(inputString);
-    };
-  };
-
-  function formatDate(dateTime: string, timezoneOffset?: string) {
-    if (!dateTime) return '';
-
-    // Regular expression to match ISO 8601 date format
-    const regex = /(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/;
-    const match = dateTime.match(regex);
-
-    if (match) {
-      const year = match[1];
-      const month = match[2];
-      const day = match[3];
-      const hour = match[4];
-      const minute = match[5];
-
-      const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-      const monthName = monthNames[parseInt(month, 10) - 1];
-
-      const hourInt = parseInt(hour, 10);
-      const ampm = hourInt >= 12 ? 'pm' : 'am';
-      const hour12 = hourInt % 12 || 12;
-
-      if (timezoneOffset) {
-        const timezoneOffsetInt = parseInt(timezoneOffset, 10);
-        let adjustedHour = (hourInt + timezoneOffsetInt) % 24;
-        if (adjustedHour < 0) {
-          adjustedHour += 24;
-        }
-        const adjustedHour12 = adjustedHour % 12 || 12;
-        const adjustedAMPM = adjustedHour >= 12 ? 'pm' : 'am';
-
-        return `${monthName} ${day}, ${year} ${adjustedHour12}:${minute}${adjustedAMPM}`;
-      } else {
-        return `${monthName} ${day}, ${year} ${hour12}:${minute}${ampm}`;
-      };
-    } else {
-      return '';
     };
   };
 
@@ -217,6 +178,7 @@ const EventPage: NextPage<IEventPageProps> = ({ event, prevUrl }) => {
         >
           <script type='application/ld+json'>{getJsonLd()}</script>
           <article
+            className='max-w-[1000px] w-full'
             id={checkNumberName(event.attributes.Name)}
           >
             {event.attributes.Image?.data ? (
@@ -230,12 +192,13 @@ const EventPage: NextPage<IEventPageProps> = ({ event, prevUrl }) => {
               </div>
             ) : ''}
             {event.attributes.Name ? (
-              <h3 className='mb-4 font-bold text-5xl max-md:text-4xl'>{event.attributes.Name}</h3>
+              <h3 className='mb-4 font-bold text-5xl max-md:text-4xl max-sm:text-3xl'>{event.attributes.Name}</h3>
             ) : ''}
             {event.attributes.Day && event.attributes.Day.length ? (
               <div className='text-left'>
                 <ItemDay
                   Days={event.attributes.Day}
+                  centered={false}
                   className='text-left justify-left align-middle items-left'
                 />
               </div>

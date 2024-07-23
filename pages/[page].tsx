@@ -28,7 +28,7 @@ const pagePage: NextPage<IPagePageProps> = ({ pages, page }) => {
           image={page.attributes.Image?.data ? page.attributes.Image.data?.attributes.url : ``}
         >
           <article
-            className='max-w-[1000px]'
+            className='max-w-[1000px] w-full'
             id={page.attributes.Title}
           >
             <h1 className='mb-4'>{page.attributes.Title}</h1>

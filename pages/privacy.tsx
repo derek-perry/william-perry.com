@@ -13,11 +13,11 @@ const privacyPage: NextPage = () => {
       <main className='bg-white text-wpBlack w-full flex flex-1 flex-col text-center items-center justify-center'>
         <article className='px-9 max-w-[1000px] w-full flex flex-1 flex-col items-center justify-center'>
           <section id='contentheader' className='max-md:mt-10 md:mt-20 mb-10 w-full text-left'>
-            <h1 className='text-6xl'>Privacy Policy</h1>
+            <h1>Privacy Policy</h1>
           </section>
 
           <section id='privacypolicy' className='mb-20 text-left'>
-            <h2 id='overview' className='text-4xl'>Privacy Policy Overview</h2>
+            <h2 id='overview'>Privacy Policy Overview</h2>
             <p className='my-4'>It is William Perry’s policy to respect your privacy regarding any information <LinkInternal href='' title='William Perry'>William-Perry.com</LinkInternal> may collect while operating this website, <LinkInternal href='' title='William Perry'>William-Perry.com</LinkInternal>. This Privacy Policy applies to <LinkInternal href='' title='William Perry'>William-Perry.com</LinkInternal> (hereinafter, “the website, “William Perry's website”, or “William Perry”). William Perry respects your privacy and is committed to protecting personally identifiable information you may provide <LinkInternal href='' title='William-Perry.com'>William-Perry.com</LinkInternal> through the website. William Perry has adopted this privacy policy (“Privacy Policy”) to explain what information may be collected in the website, how <LinkInternal href='' title='William-Perry.com'>William-Perry.com</LinkInternal> uses this information, and under what circumstances <LinkInternal href='' title='William-Perry.com'>William-Perry.com</LinkInternal> may disclose the information to third parties. This Privacy Policy applies only to information <LinkInternal href='' title='William-Perry.com'>William-Perry.com</LinkInternal> collects through the website and does not apply to the collection of information from other sources.</p>
             <p className='my-4'>This Privacy Policy sets forth the general rules and policies governing your experience with the website. Depending on your activities when using the website, you may be required to agree to additional terms and conditions.</p>
 

@@ -13,12 +13,11 @@ export interface INavigationItem {
 
 const navLinksMenu = [
   { title: 'Home', href: '' },
-  { title: 'Biography', href: 'about' },
+  { title: 'Lessons', href: 'lessons' },
+  { title: 'Repertoire', href: 'repertoire' },
+  { title: 'Videos', href: 'videos' },
   { title: 'Calendar', href: 'calendar' },
-  { title: 'Photos', href: 'photos' },
-  { title: 'Recordings', href: 'recordings' },
-  { title: 'Projects', href: 'projects' },
-  { title: 'Teaching Philosophy', href: 'teaching-philosophy' },
+  { title: 'About', href: 'about' },
   { title: 'Contact', href: 'contact' }
 ];
 

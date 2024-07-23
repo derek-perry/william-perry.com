@@ -11,7 +11,7 @@ const videosPage: NextPage = () => {
       <main className='bg-white text-wpBlack w-full flex flex-1 flex-col text-center items-center justify-center'>
         <section id='videos'>
           <section className='px-9 max-md:mt-10 md:mt-20 mb-28 max-w-[1000px] text-left'>
-            <h1 className='text-6xl'>Videos</h1>
+            <h1>Videos</h1>
             <p className='my-4'>William plays solo piano versions of his most requested songs.</p>
             <div className='flex max-md:flex-col md:flex-row md:flex-wrap gap-y-2'>
               <div className='flex flex-col mx-auto md:max-w-[708px]'>

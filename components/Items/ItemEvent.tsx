@@ -46,6 +46,7 @@ const ItemEvent: FC<IItemEventProps> = ({
         <ItemDay
           Days={Day}
           centered={true}
+          linkedAddress={false}
           className='text-center justify-center align-middle items-middle'
         />
       ) : ''}

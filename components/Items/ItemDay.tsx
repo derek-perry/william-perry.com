@@ -1,16 +1,19 @@
 import { FC } from 'react';
 import cn from 'classnames';
 import { eventDayProps } from '../../lib/api';
+import LinkExternal from '../Links/LinkExternal';
 
 interface IItemDayProps {
   Days: eventDayProps[] | null;
   centered: boolean;
+  linkedAddress: boolean;
   className?: string;
 };
 
 const ItemDay: FC<IItemDayProps> = ({
   Days,
   centered,
+  linkedAddress,
   className
 }): JSX.Element => {
   function stringWithLineBreaks(inputString: string) {
@@ -132,7 +135,14 @@ const ItemDay: FC<IItemDayProps> = ({
                         )}
                       >
                         {DayItem.Location.data?.attributes.Name ? (
-                          <p className='text-2xl px-2'>{DayItem.Location.data?.attributes.Name}</p>
+                          (linkedAddress && DayItem.Location.data?.attributes.Website ? (
+                            <LinkExternal
+                              href={DayItem.Location.data?.attributes.Website}
+                              title={DayItem.Location.data?.attributes.Name}
+                            ><p className='text-2xl px-2'>{DayItem.Location.data?.attributes.Name}</p></LinkExternal>
+                          ) : (
+                            <p className='text-2xl px-2'>{DayItem.Location.data?.attributes.Name}</p>
+                          ))
                         ) : ''}
                         <p className='text-2xl px-2'>{DayItem.Location.data?.attributes.StreetAddress}</p>
                         <p className={cn('text-2xl px-2 flex flex-row ', className)}>{DayItem.Location.data?.attributes.City ? DayItem.Location.data?.attributes.City : ''}{DayItem.Location.data?.attributes.State ? (', ' + DayItem.Location.data?.attributes.State) : ''}{DayItem.Location.data?.attributes.PostalCode ? (' ' + DayItem.Location.data?.attributes.PostalCode) : ''}</p>
@@ -212,7 +222,14 @@ const ItemDay: FC<IItemDayProps> = ({
                     )}
                   >
                     {Days[0].Location.data?.attributes.Name ? (
-                      <p className='text-2xl px-2'>{Days[0].Location.data?.attributes.Name}</p>
+                      (linkedAddress && Days[0].Location.data?.attributes.Website ? (
+                        <LinkExternal
+                          href={Days[0].Location.data?.attributes.Website}
+                          title={Days[0].Location.data?.attributes.Name}
+                        ><p className='text-2xl px-2'>{Days[0].Location.data?.attributes.Name}</p></LinkExternal>
+                      ) : (
+                        <p className='text-2xl px-2'>{Days[0].Location.data?.attributes.Name}</p>
+                      ))
                     ) : ''}
                     <p className='text-2xl px-2'>{Days[0].Location.data?.attributes.StreetAddress}</p>
                     <p className={cn('text-2xl px-2 flex flex-row ', className)}>{Days[0].Location.data?.attributes.City ? Days[0].Location.data?.attributes.City : ''}{Days[0].Location.data?.attributes.State ? (', ' + Days[0].Location.data?.attributes.State) : ''}{Days[0].Location.data?.attributes.PostalCode ? (' ' + Days[0].Location.data?.attributes.PostalCode) : ''}</p>

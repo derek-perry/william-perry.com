@@ -6,7 +6,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: "Source Serif 4", Helvetica, Verdana, Arial;
+  font-family: 'Source Serif 4', Helvetica, Verdana, Arial;
   letter-spacing: 0.2px;
   scroll-behavior: smooth;
 }

@@ -199,6 +199,7 @@ const EventPage: NextPage<IEventPageProps> = ({ event, prevUrl }) => {
                 <ItemDay
                   Days={event.attributes.Day}
                   centered={false}
+                  linkedAddress={true}
                   className='text-left justify-left align-middle items-left'
                 />
               </div>

@@ -72,6 +72,7 @@ export interface pageProps {
     Slug: string;
     Content: string;
     SEODescription: string;
+    ShowTitle: boolean | null;
     Image: {
       data: {
         attributes: {

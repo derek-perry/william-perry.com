@@ -20,7 +20,7 @@ const lessonsPage: NextPage = () => {
       <PageHeader />
       <main className='bg-white text-wpBlack w-full flex flex-1 flex-col text-center items-center justify-center px-9'>
         <section id='lessons'>
-          <div className='max-md:mt-10 md:mt-20 mb-28 max-w-[1000px] text-left'>
+          <div className='max-md:mt-10 md:mt-20 mb-28 max-w-[1000px]'>
             <h1 className='mb-4'>Piano Lessons</h1>
             <div className='flex max-md:flex-col md:flex-row max-md:text-center md:text-left max-md:items-center md:items-left gap-x-10 gap-y-6'>
               <div className='max-w-[280px]'>

@@ -41,6 +41,11 @@ const EventPage: NextPage<IEventPageProps> = ({ event, prevUrl }) => {
   };
 
   function markdownToHtml(content: string): string {
+    // Convert YouTube links to embedded iFrames
+    content = content.replace(/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?([^\s]+)/g, (match, videoId) => {
+      return `<div class="videoContainer"><iframe class="videoItem videoItemSized" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>`;
+    });
+
     // Convert headers to HTML <h> tags with ids
     content = content.replace(/^(#+)\s+(.*)$/gm, (match, hashes, headerText) => {
       const level = hashes.length;

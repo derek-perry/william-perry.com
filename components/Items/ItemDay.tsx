@@ -103,11 +103,11 @@ const ItemDay: FC<IItemDayProps> = ({
                         >
                           <p className='text-2xl'> - </p>
                           <p className='text-2xl'>{formatDate(DayItem.EndTime, DayItem.Timezone.data?.attributes.Offset)}</p>
+                        </div>
+                      ) : '')}
                           {(DayItem.Timezone.data ? (
                             <p className='text-2xl'>{DayItem.Timezone.data.attributes.Abbreviation}</p>
                           ) : '')}
-                        </div>
-                      ) : '')}
                     </div>
                     {(DayItem.Price ? (
                       <div
@@ -190,11 +190,11 @@ const ItemDay: FC<IItemDayProps> = ({
                     >
                       <p className='text-2xl'> - </p>
                       <p className='text-2xl'>{formatDate(Days[0].EndTime, Days[0].Timezone.data?.attributes.Offset)}</p>
+                    </div>
+                  ) : '')}
                       {(Days[0].Timezone.data ? (
                         <p className='text-2xl'>{Days[0].Timezone.data.attributes.Abbreviation}</p>
                       ) : '')}
-                    </div>
-                  ) : '')}
                 </div>
                 {(Days[0].Price ? (
                   <div

@@ -30,6 +30,12 @@ export default function NotFound() {
           >
             About
           </Link>
+          <Link
+            href="/event/test?id=1"
+            className={cn(buttonVariants({ size: "default" }))}
+          >
+            Event 1
+          </Link>
           <ModeToggle />
         </div>
       </div>

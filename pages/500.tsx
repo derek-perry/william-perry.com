@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import Page from '../components/Page';
 
-const error500Page: NextPage = () => {
+const Error500Page: NextPage = () => {
   return (
     <Page
       title='Error 500: Internal Server Error - William Perry'
@@ -20,4 +20,4 @@ const error500Page: NextPage = () => {
   );
 };
 
-export default error500Page;
+export default Error500Page;

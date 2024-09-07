@@ -13,7 +13,7 @@ import PageFooter from '../components/PageFooter';
 import LinkExternal from '../components/Links/LinkExternal';
 
 import 'react-accessible-accordion/dist/fancy-example.css';
-const lessonsPage: NextPage = () => {
+const LessonsPage: NextPage = () => {
   return (
     <div className='min-h-screen flex flex-col items-center justify-center'>
       <SiteHead title='Piano Lessons - William Perry' description='William Perry is a pianist residing in Cincinnati, Ohio. He brings to every musical endeavor a unique perspective as a classical pianist, jazz pianist, electronic keyboardist and educator.' url='lessons' image='' />
@@ -121,4 +121,4 @@ const lessonsPage: NextPage = () => {
   );
 };
 
-export default lessonsPage;
+export default LessonsPage;

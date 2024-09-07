@@ -5,7 +5,7 @@ import api from '../lib/config';
 import { songProps } from '../lib/api';
 import Page from '../components/Page';
 
-const repertoirePage: NextPage = () => {
+const RepertoirePage: NextPage = () => {
   const [songs, setSongs] = useState<songProps[]>([]);
   const [isLoadingSongs, setIsLoadingSongs] = useState(false);
 
@@ -16,7 +16,7 @@ const repertoirePage: NextPage = () => {
           setIsLoadingSongs(true);
           const fetchedData = [];
           const { data } = await api.get(
-            `wp-songs?pagination[page]=1&pagination[pageSize]=10&sort[0]=Name:asc&sort[1]=Year:asc`
+            'wp-songs?pagination[page]=1&pagination[pageSize]=10&sort[0]=Name:asc&sort[1]=Year:asc'
           );
           fetchedData.push(...data?.data);
           if (
@@ -116,4 +116,4 @@ const repertoirePage: NextPage = () => {
   );
 };
 
-export default repertoirePage;
+export default RepertoirePage;

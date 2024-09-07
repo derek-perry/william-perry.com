@@ -1,5 +1,6 @@
 import { FC, useState } from 'react';
 import NavigationDropdown from './components/NavigationDropdown';
+import Image from 'next/image';
 
 interface INavMenuProps {
   className?: string;
@@ -32,7 +33,7 @@ const NavMenu: FC<INavMenuProps> = ({ className }): JSX.Element => {
         >
           Menu
         </span>
-        <img src={(siteUrl + '/menu.svg')} alt='' aria-hidden='true' height={34} width={34} />
+        <Image src={(siteUrl + '/menu.svg')} alt='' aria-hidden='true' height={34} width={34} />
       </a>
       {dropdown && <NavigationDropdown onClose={setDropdown} />}
     </div>

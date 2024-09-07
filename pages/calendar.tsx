@@ -6,7 +6,7 @@ import { eventProps } from '../lib/api';
 import Page from '../components/Page';
 import ItemEvent from '../components/Items/ItemEvent';
 
-const calendarPage: NextPage = () => {
+const CalendarPage: NextPage = () => {
   let currentDateTime: Date = new Date();
   const timezoneOffset = new Date().getTimezoneOffset()
   const offset = Math.abs(timezoneOffset)
@@ -240,4 +240,4 @@ const calendarPage: NextPage = () => {
   );
 };
 
-export default calendarPage;
+export default CalendarPage;

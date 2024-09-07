@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import Page from '../components/Page';
 
-const error404Page: NextPage = () => {
+const Error404Page: NextPage = () => {
   return (
     <Page
       title='Error 404: Not Found - William Perry'
@@ -20,4 +20,4 @@ const error404Page: NextPage = () => {
   );
 };
 
-export default error404Page;
+export default Error404Page;

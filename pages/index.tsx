@@ -4,7 +4,7 @@ import PageFooter from '../components/PageFooter';
 import ButtonInternal from '../components/Buttons/ButtonInternal';
 import ButtonExternal from '../components/Buttons/ButtonExternal';
 
-const homePage: NextPage = () => {
+const HomePage: NextPage = () => {
   return (
     <div className='min-h-screen flex flex-col items-center justify-center'>
       <SiteHead title='William Perry' description='William Perry is a pianist residing in Cincinnati, Ohio. He brings to every musical endeavor a unique perspective as a classical pianist, jazz pianist, electronic keyboardist and educator.' url='' image='' />
@@ -59,4 +59,4 @@ const homePage: NextPage = () => {
   );
 };
 
-export default homePage;
+export default HomePage;

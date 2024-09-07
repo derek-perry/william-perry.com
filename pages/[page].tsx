@@ -7,7 +7,7 @@ interface IPagePageProps {
   page: pageProps | null;
 };
 
-const pagePage: NextPage<IPagePageProps> = ({ pages, page }) => {
+const PagePage: NextPage<IPagePageProps> = ({ pages, page }) => {
   if (pages && pages.data && pages.data.length > 0) {
     page = pages.data[0];
   } else {
@@ -118,4 +118,4 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   };
 };
 
-export default pagePage;
+export default PagePage;

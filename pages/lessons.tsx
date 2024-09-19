@@ -13,6 +13,7 @@ import PageFooter from '../components/PageFooter';
 import LinkExternal from '../components/Links/LinkExternal';
 
 import 'react-accessible-accordion/dist/fancy-example.css';
+
 const LessonsPage: NextPage = () => {
   return (
     <div className='min-h-screen flex flex-col items-center justify-center'>
